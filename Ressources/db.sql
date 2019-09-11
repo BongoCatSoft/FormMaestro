@@ -18,8 +18,6 @@ Create table employees (
     user_id INT NOT NULL, /* id du gestionnaire */
     position_id int NOT NULL,
     location_id int not null,
-    formation_ids blob, /* txt avec le id des formations séparés par un ; each*/
-    formation_infos blob,
     created DATETIME,
     modified DATETIME
 );
@@ -49,4 +47,18 @@ create table  locations (
   address varchar(255) not null,
   province varchar(35) not null,
   postal_code varchar(7) not null
+);
+
+create table preuves (
+    id INT AUTO_INCREMENT PRIMARY KEY ,
+    nom_original varchar(255) NOT NULL,
+    date_fait date,
+)
+
+create table formations_emloyee (
+  id INT AUTO_INCREMENT PRIMARY KEY ,
+  empployee_id INT NOT NULL,
+  formation_id INT NOT NULL,
+  date_executee date,
+  preuve_id INT
 );

@@ -42,14 +42,7 @@
             <th scope="row"><?= __('Employee Id') ?></th>
             <td><?= $this->Number->format($user->employee_id) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($user->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($user->modified) ?></td>
-        </tr>
+
     </table>
     <div class="related">
         <h4><?= __('Related Employees') ?></h4>
@@ -70,8 +63,6 @@
                 <th scope="col"><?= __('Extra Infos') ?></th>
                 <th scope="col"><?= __('Formation Plan Last Sent') ?></th>
                 <th scope="col"><?= __('Active') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($user->employees as $employees): ?>
@@ -90,8 +81,6 @@
                 <td><?= h($employees->extra_infos) ?></td>
                 <td><?= h($employees->formation_plan_last_sent) ?></td>
                 <td><?= h($employees->active) ?></td>
-                <td><?= h($employees->created) ?></td>
-                <td><?= h($employees->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Employees', 'action' => 'view', $employees->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Employees', 'action' => 'edit', $employees->id]) ?>

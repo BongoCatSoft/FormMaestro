@@ -15,7 +15,6 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('address') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('province') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('postal_code') ?></th>
@@ -25,7 +24,6 @@
         <tbody>
             <?php foreach ($locations as $location): ?>
             <tr>
-                <td><?= $this->Number->format($location->id) ?></td>
                 <td><?= h($location->address) ?></td>
                 <td><?= h($location->province) ?></td>
                 <td><?= h($location->postal_code) ?></td>

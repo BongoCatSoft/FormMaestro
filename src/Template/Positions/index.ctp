@@ -17,20 +17,14 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($positions as $position): ?>
             <tr>
-                <td><?= $this->Number->format($position->id) ?></td>
                 <td><?= h($position->name) ?></td>
-                <td><?= h($position->created) ?></td>
-                <td><?= h($position->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $position->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $position->id]) ?>

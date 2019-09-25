@@ -71,14 +71,6 @@
             <td><?= h($employee->formation_plan_last_sent) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($employee->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($employee->modified) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Active') ?></th>
             <td><?= $employee->active ? __('Yes') : __('No'); ?></td>
         </tr>

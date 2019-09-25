@@ -138,6 +138,7 @@ create table if not exists users
     employee_id int          null,
     created     datetime     null,
     modified    datetime     null,
+	role int default 0 not null,
     constraint employee_id_management
         foreign key (employee_id) references employees (id)
             on update cascade on delete cascade

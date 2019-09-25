@@ -17,7 +17,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function initialize()
+	     public function initialize()
     {
         parent::initialize();
         // Ajoute l'action 'add' à la liste des actions autorisées.
@@ -109,8 +109,8 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-    }
 
+    }
     // Dans src/Controller/UsersController.php
     public function login()
     {
@@ -129,4 +129,5 @@ class UsersController extends AppController
         $this->Flash->success('Vous avez été déconnecté.');
         return $this->redirect($this->Auth->logout());
     }
+
 }

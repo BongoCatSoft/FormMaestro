@@ -103,4 +103,9 @@ class LocationsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    public function isAuthorized($user)
+    {
+
+        return $user['role'] === 0 || $user['role'] === 1;
+    }
 }

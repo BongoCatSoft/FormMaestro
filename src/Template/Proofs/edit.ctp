@@ -1,0 +1,34 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Proof $proof
+ */
+?>
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Form->postLink(
+                __('Delete'),
+                ['action' => 'delete', $proof->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $proof->id)]
+            )
+        ?></li>
+        <li><?= $this->Html->link(__('List Proofs'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Formations Employee'), ['controller' => 'FormationsEmployee', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Formations Employee'), ['controller' => 'FormationsEmployee', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Formations Position'), ['controller' => 'FormationsPosition', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Formations Position'), ['controller' => 'FormationsPosition', 'action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="proofs form large-9 medium-8 columns content">
+    <?= $this->Form->create($proof) ?>
+    <fieldset>
+        <legend><?= __('Edit Proof') ?></legend>
+        <?php
+            echo $this->Form->control('original_file_name');
+            echo $this->Form->control('upload_date', ['empty' => true]);
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>

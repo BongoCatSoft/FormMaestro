@@ -23,6 +23,7 @@ class UsersFixture extends TestFixture
         'employee_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'role' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'employee_id_management' => ['type' => 'index', 'columns' => ['employee_id'], 'length' => []],
         ],
@@ -51,8 +52,9 @@ class UsersFixture extends TestFixture
                 'name' => 'Lorem ipsum dolor sit amet',
                 'last_name' => 'Lorem ipsum dolor sit amet',
                 'employee_id' => 1,
-                'created' => '2019-09-25 16:13:56',
-                'modified' => '2019-09-25 16:13:56'
+                'created' => '2019-09-25 20:11:33',
+                'modified' => '2019-09-25 20:11:33',
+                'role' => 1
             ],
         ];
         parent::init();

@@ -9,6 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Formations Model
  *
+ * @property &\Cake\ORM\Association\HasMany $FormationsEmployee
+ * @property &\Cake\ORM\Association\HasMany $FormationsPosition
+ *
  * @method \App\Model\Entity\Formation get($primaryKey, $options = [])
  * @method \App\Model\Entity\Formation newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Formation[] newEntities(array $data, array $options = [])
@@ -33,6 +36,13 @@ class FormationsTable extends Table
         $this->setTable('formations');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        $this->hasMany('FormationsEmployee', [
+            'foreignKey' => 'formation_id'
+        ]);
+        $this->hasMany('FormationsPosition', [
+            'foreignKey' => 'formation_id'
+        ]);
     }
 
     /**
@@ -48,38 +58,44 @@ class FormationsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('name')
-            ->maxLength('name', 255)
-            ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+            ->scalar('titre')
+            ->maxLength('titre', 255)
+            ->requirePresence('titre', 'create')
+            ->notEmptyString('titre');
 
         $validator
-            ->integer('frequence')
+            ->scalar('categorie')
+            ->maxLength('categorie', 255)
+            ->requirePresence('categorie', 'create')
+            ->notEmptyString('categorie');
+
+        $validator
+            ->scalar('frequence')
+            ->maxLength('frequence', 255)
             ->requirePresence('frequence', 'create')
             ->notEmptyString('frequence');
 
         $validator
-            ->scalar('priority')
-            ->maxLength('priority', 3)
-            ->requirePresence('priority', 'create')
-            ->notEmptyString('priority');
+            ->scalar('debut_rappel')
+            ->maxLength('debut_rappel', 255)
+            ->requirePresence('debut_rappel', 'create')
+            ->notEmptyString('debut_rappel');
 
         $validator
-            ->scalar('type')
-            ->maxLength('type', 30)
-            ->requirePresence('type', 'create')
-            ->notEmptyString('type');
+            ->scalar('modalite')
+            ->maxLength('modalite', 255)
+            ->requirePresence('modalite', 'create')
+            ->notEmptyString('modalite');
 
         $validator
-            ->scalar('category')
-            ->maxLength('category', 60)
-            ->requirePresence('category', 'create')
-            ->notEmptyString('category');
+            ->integer('duree')
+            ->requirePresence('duree', 'create')
+            ->notEmptyString('duree');
 
         $validator
-            ->scalar('description')
-            ->maxLength('description', 255)
-            ->allowEmptyString('description');
+            ->scalar('remarque')
+            ->maxLength('remarque', 255)
+            ->allowEmptyString('remarque');
 
         return $validator;
     }

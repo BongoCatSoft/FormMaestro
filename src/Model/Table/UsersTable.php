@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property \App\Model\Table\EmployeesTable&\Cake\ORM\Association\BelongsTo $Employees
  * @property \App\Model\Table\EmployeesTable&\Cake\ORM\Association\HasMany $Employees
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -40,6 +41,9 @@ class UsersTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->belongsTo('Employees', [
+            'foreignKey' => 'employee_id'
+        ]);
         $this->hasMany('Employees', [
             'foreignKey' => 'user_id'
         ]);
@@ -93,6 +97,7 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['employee_id'], 'Employees'));
 
         return $rules;
     }

@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Locations Model
  *
+ * @property &\Cake\ORM\Association\HasMany $Employees
+ *
  * @method \App\Model\Entity\Location get($primaryKey, $options = [])
  * @method \App\Model\Entity\Location newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Location[] newEntities(array $data, array $options = [])
@@ -33,6 +35,10 @@ class LocationsTable extends Table
         $this->setTable('locations');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+
+        $this->hasMany('Employees', [
+            'foreignKey' => 'location_id'
+        ]);
     }
 
     /**

@@ -41,14 +41,19 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Email') ?></th>
+                <th scope="col"><?= __('Employee Number') ?></th>
+                <th scope="col"><?= __('Civilite Id') ?></th>
                 <th scope="col"><?= __('Name') ?></th>
                 <th scope="col"><?= __('Last Name') ?></th>
+                <th scope="col"><?= __('Language Id') ?></th>
+                <th scope="col"><?= __('Cellphone') ?></th>
                 <th scope="col"><?= __('User Id') ?></th>
+                <th scope="col"><?= __('Email') ?></th>
                 <th scope="col"><?= __('Position Id') ?></th>
                 <th scope="col"><?= __('Location Id') ?></th>
-                <th scope="col"><?= __('Formation Ids') ?></th>
-                <th scope="col"><?= __('Formation Infos') ?></th>
+                <th scope="col"><?= __('Extra Infos') ?></th>
+                <th scope="col"><?= __('Formation Plan Last Sent') ?></th>
+                <th scope="col"><?= __('Active') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -56,14 +61,19 @@
             <?php foreach ($position->employees as $employees): ?>
             <tr>
                 <td><?= h($employees->id) ?></td>
-                <td><?= h($employees->email) ?></td>
+                <td><?= h($employees->employee_number) ?></td>
+                <td><?= h($employees->civilite_id) ?></td>
                 <td><?= h($employees->name) ?></td>
                 <td><?= h($employees->last_name) ?></td>
+                <td><?= h($employees->language_id) ?></td>
+                <td><?= h($employees->cellphone) ?></td>
                 <td><?= h($employees->user_id) ?></td>
+                <td><?= h($employees->email) ?></td>
                 <td><?= h($employees->position_id) ?></td>
-                <td><?= h($employees->Location_id) ?></td>
-                <td><?= h($employees->formation_ids) ?></td>
-                <td><?= h($employees->formation_infos) ?></td>
+                <td><?= h($employees->location_id) ?></td>
+                <td><?= h($employees->extra_infos) ?></td>
+                <td><?= h($employees->formation_plan_last_sent) ?></td>
+                <td><?= h($employees->active) ?></td>
                 <td><?= h($employees->created) ?></td>
                 <td><?= h($employees->modified) ?></td>
                 <td class="actions">

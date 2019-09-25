@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Positions Model
  *
  * @property \App\Model\Table\EmployeesTable&\Cake\ORM\Association\HasMany $Employees
+ * @property &\Cake\ORM\Association\HasMany $FormationsPosition
  *
  * @method \App\Model\Entity\Position get($primaryKey, $options = [])
  * @method \App\Model\Entity\Position newEntity($data = null, array $options = [])
@@ -43,6 +44,9 @@ class PositionsTable extends Table
         $this->hasMany('Employees', [
             'foreignKey' => 'position_id'
         ]);
+        $this->hasMany('FormationsPosition', [
+            'foreignKey' => 'position_id'
+        ]);
     }
 
     /**
@@ -62,10 +66,6 @@ class PositionsTable extends Table
             ->maxLength('name', 60)
             ->requirePresence('name', 'create')
             ->notEmptyString('name');
-
-        $validator
-            ->requirePresence('formation_ids', 'create')
-            ->notEmptyString('formation_ids');
 
         return $validator;
     }

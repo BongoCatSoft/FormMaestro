@@ -15,12 +15,13 @@
     <fieldset>
         <legend><?= __('Add Formation') ?></legend>
         <?php
-            echo $this->Form->control('name');
+            echo $this->Form->control('titre');
+            echo $this->Form->control('categorie');
             echo $this->Form->control('frequence');
-            echo $this->Form->control('priority');
-            echo $this->Form->control('type');
-            echo $this->Form->control('category');
-            echo $this->Form->control('description');
+            echo $this->Form->control('debut_rappel');
+            echo $this->Form->control('modalite');
+            echo $this->Form->control('duree');
+            echo $this->Form->control('remarque');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

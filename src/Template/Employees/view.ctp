@@ -23,8 +23,8 @@
     <h3><?= h($employee->name) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Email') ?></th>
-            <td><?= h($employee->email) ?></td>
+            <th scope="row"><?= __('Employee Number') ?></th>
+            <td><?= h($employee->employee_number) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Name') ?></th>
@@ -39,16 +39,36 @@
             <td><?= $employee->has('user') ? $this->Html->link($employee->user->name, ['controller' => 'Users', 'action' => 'view', $employee->user->id]) : '' ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Email') ?></th>
+            <td><?= h($employee->email) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Position') ?></th>
             <td><?= $employee->has('position') ? $this->Html->link($employee->position->name, ['controller' => 'Positions', 'action' => 'view', $employee->position->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Location') ?></th>
-            <td><?= $employee->has('location') ? $this->Html->link($employee->location->id, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($employee->id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Civilite Id') ?></th>
+            <td><?= $this->Number->format($employee->civilite_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Language Id') ?></th>
+            <td><?= $this->Number->format($employee->language_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Cellphone') ?></th>
+            <td><?= $this->Number->format($employee->cellphone) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Location Id') ?></th>
+            <td><?= $this->Number->format($employee->location_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Formation Plan Last Sent') ?></th>
+            <td><?= h($employee->formation_plan_last_sent) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
@@ -57,6 +77,10 @@
         <tr>
             <th scope="row"><?= __('Modified') ?></th>
             <td><?= h($employee->modified) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Active') ?></th>
+            <td><?= $employee->active ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
 </div>

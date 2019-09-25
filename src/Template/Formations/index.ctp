@@ -16,12 +16,13 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('titre') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('categorie') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('frequence') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('priority') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('type') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('category') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('description') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('debut_rappel') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modalite') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('duree') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('remarque') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -29,12 +30,13 @@
             <?php foreach ($formations as $formation): ?>
             <tr>
                 <td><?= $this->Number->format($formation->id) ?></td>
-                <td><?= h($formation->name) ?></td>
-                <td><?= $this->Number->format($formation->frequence) ?></td>
-                <td><?= h($formation->priority) ?></td>
-                <td><?= h($formation->type) ?></td>
-                <td><?= h($formation->category) ?></td>
-                <td><?= h($formation->description) ?></td>
+                <td><?= h($formation->titre) ?></td>
+                <td><?= h($formation->categorie) ?></td>
+                <td><?= h($formation->frequence) ?></td>
+                <td><?= h($formation->debut_rappel) ?></td>
+                <td><?= h($formation->modalite) ?></td>
+                <td><?= $this->Number->format($formation->duree) ?></td>
+                <td><?= h($formation->remarque) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $formation->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $formation->id]) ?>

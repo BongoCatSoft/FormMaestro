@@ -7,14 +7,19 @@ use Cake\ORM\Entity;
  * Employee Entity
  *
  * @property int $id
- * @property string $email
+ * @property string|null $employee_number
+ * @property int $civilite_id
  * @property string $name
  * @property string $last_name
- * @property int $user_id
+ * @property int $language_id
+ * @property int|null $cellphone
+ * @property int|null $user_id
+ * @property string $email
  * @property int $position_id
- * @property int $Location_id
- * @property string|resource|null $formation_ids
- * @property string|resource|null $formation_infos
+ * @property int $location_id
+ * @property string|resource|null $extra_infos
+ * @property \Cake\I18n\FrozenTime|null $formation_plan_last_sent
+ * @property bool|null $active
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
@@ -34,14 +39,19 @@ class Employee extends Entity
      * @var array
      */
     protected $_accessible = [
-        'email' => true,
+        'employee_number' => true,
+        'civilite_id' => true,
         'name' => true,
         'last_name' => true,
+        'language_id' => true,
+        'cellphone' => true,
         'user_id' => true,
+        'email' => true,
         'position_id' => true,
-        'Location_id' => true,
-        'formation_ids' => true,
-        'formation_infos' => true,
+        'location_id' => true,
+        'extra_infos' => true,
+        'formation_plan_last_sent' => true,
+        'active' => true,
         'created' => true,
         'modified' => true,
         'user' => true,

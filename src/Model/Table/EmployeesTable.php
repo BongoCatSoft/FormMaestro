@@ -9,9 +9,13 @@ use Cake\Validation\Validator;
 /**
  * Employees Model
  *
+ * @property &\Cake\ORM\Association\BelongsTo $Civilitees
+ * @property &\Cake\ORM\Association\BelongsTo $Languages
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\PositionsTable&\Cake\ORM\Association\BelongsTo $Positions
  * @property \App\Model\Table\LocationsTable&\Cake\ORM\Association\BelongsTo $Locations
+ * @property &\Cake\ORM\Association\HasMany $FormationsEmployee
+ * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
  *
  * @method \App\Model\Entity\Employee get($primaryKey, $options = [])
  * @method \App\Model\Entity\Employee newEntity($data = null, array $options = [])
@@ -42,17 +46,30 @@ class EmployeesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
+        $this->belongsTo('Civilitees', [
+            'foreignKey' => 'civilite_id',
             'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Languages', [
+            'foreignKey' => 'language_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id'
         ]);
         $this->belongsTo('Positions', [
             'foreignKey' => 'position_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Locations', [
-            'foreignKey' => 'Location_id',
+            'foreignKey' => 'location_id',
             'joinType' => 'INNER'
+        ]);
+        $this->hasMany('FormationsEmployee', [
+            'foreignKey' => 'employee_id'
+        ]);
+        $this->hasMany('Users', [
+            'foreignKey' => 'employee_id'
         ]);
     }
 
@@ -69,9 +86,9 @@ class EmployeesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+            ->scalar('employee_number')
+            ->maxLength('employee_number', 10)
+            ->allowEmptyString('employee_number');
 
         $validator
             ->scalar('name')
@@ -86,10 +103,24 @@ class EmployeesTable extends Table
             ->notEmptyString('last_name');
 
         $validator
-            ->allowEmptyString('formation_ids');
+            ->integer('cellphone')
+            ->allowEmptyString('cellphone');
 
         $validator
-            ->allowEmptyString('formation_infos');
+            ->email('email')
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email');
+
+        $validator
+            ->allowEmptyString('extra_infos');
+
+        $validator
+            ->dateTime('formation_plan_last_sent')
+            ->allowEmptyDateTime('formation_plan_last_sent');
+
+        $validator
+            ->boolean('active')
+            ->allowEmptyString('active');
 
         return $validator;
     }
@@ -104,9 +135,11 @@ class EmployeesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['civilite_id'], 'Civilitees'));
+        $rules->add($rules->existsIn(['language_id'], 'Languages'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['position_id'], 'Positions'));
-        $rules->add($rules->existsIn(['Location_id'], 'Locations'));
+        $rules->add($rules->existsIn(['location_id'], 'Locations'));
 
         return $rules;
     }

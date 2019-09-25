@@ -17,32 +17,36 @@
     <h3><?= h($formation->name) ?></h3>
     <table class="vertical-table">
         <tr>
-            <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($formation->name) ?></td>
+            <th scope="row"><?= __('Titre') ?></th>
+            <td><?= h($formation->titre) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Priority') ?></th>
-            <td><?= h($formation->priority) ?></td>
+            <th scope="row"><?= __('Categorie') ?></th>
+            <td><?= h($formation->categorie) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Type') ?></th>
-            <td><?= h($formation->type) ?></td>
+            <th scope="row"><?= __('Frequence') ?></th>
+            <td><?= h($formation->frequence) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Category') ?></th>
-            <td><?= h($formation->category) ?></td>
+            <th scope="row"><?= __('Debut Rappel') ?></th>
+            <td><?= h($formation->debut_rappel) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Description') ?></th>
-            <td><?= h($formation->description) ?></td>
+            <th scope="row"><?= __('Modalite') ?></th>
+            <td><?= h($formation->modalite) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Remarque') ?></th>
+            <td><?= h($formation->remarque) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($formation->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Frequence') ?></th>
-            <td><?= $this->Number->format($formation->frequence) ?></td>
+            <th scope="row"><?= __('Duree') ?></th>
+            <td><?= $this->Number->format($formation->duree) ?></td>
         </tr>
     </table>
 </div>

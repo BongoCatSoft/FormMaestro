@@ -8,7 +8,6 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $name
- * @property string|resource $formation_ids
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
@@ -27,7 +26,6 @@ class Position extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'formation_ids' => true,
         'created' => true,
         'modified' => true,
         'employees' => true

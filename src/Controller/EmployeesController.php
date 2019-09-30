@@ -20,7 +20,7 @@ class EmployeesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Positions', 'Locations']
+            'contain' => ['Civilitees', 'Languages', 'Positions', 'Locations']
         ];
         $employees = $this->paginate($this->Employees);
 
@@ -37,7 +37,7 @@ class EmployeesController extends AppController
     public function view($id = null)
     {
         $employee = $this->Employees->get($id, [
-            'contain' => ['Users', 'Positions', 'Locations']
+            'contain' => ['Civilitees', 'Languages', 'Positions', 'Locations', 'Users', 'FormationsEmployee']
         ]);
 
         $this->set('employee', $employee);
@@ -60,10 +60,11 @@ class EmployeesController extends AppController
             }
             $this->Flash->error(__('The employee could not be saved. Please, try again.'));
         }
-        $users = $this->Employees->Users->find('list', ['limit' => 200]);
+        $civilitees = $this->Employees->Civilitees->find('list', ['limit' => 200]);
+        $languages = $this->Employees->Languages->find('list', ['limit' => 200]);
         $positions = $this->Employees->Positions->find('list', ['limit' => 200]);
         $locations = $this->Employees->Locations->find('list', ['limit' => 200]);
-        $this->set(compact('employee', 'users', 'positions', 'locations'));
+        $this->set(compact('employee', 'civilitees', 'languages', 'positions', 'locations'));
     }
 
     /**
@@ -87,10 +88,11 @@ class EmployeesController extends AppController
             }
             $this->Flash->error(__('The employee could not be saved. Please, try again.'));
         }
-        $users = $this->Employees->Users->find('list', ['limit' => 200]);
+        $civilitees = $this->Employees->Civilitees->find('list', ['limit' => 200]);
+        $languages = $this->Employees->Languages->find('list', ['limit' => 200]);
         $positions = $this->Employees->Positions->find('list', ['limit' => 200]);
         $locations = $this->Employees->Locations->find('list', ['limit' => 200]);
-        $this->set(compact('employee', 'users', 'positions', 'locations'));
+        $this->set(compact('employee', 'civilitees', 'languages', 'positions', 'locations'));
     }
 
     /**

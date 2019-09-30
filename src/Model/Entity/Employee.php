@@ -23,9 +23,12 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  *
- * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Civilitee $civilitee
+ * @property \App\Model\Entity\Language $language
+ * @property \App\Model\Entity\User[] $users
  * @property \App\Model\Entity\Position $position
  * @property \App\Model\Entity\Location $location
+ * @property \App\Model\Entity\FormationsEmployee[] $formations_employee
  */
 class Employee extends Entity
 {
@@ -54,8 +57,11 @@ class Employee extends Entity
         'active' => true,
         'created' => true,
         'modified' => true,
-        'user' => true,
+        'civilitee' => true,
+        'language' => true,
+        'users' => true,
         'position' => true,
-        'location' => true
+        'location' => true,
+        'formations_employee' => true
     ];
 }

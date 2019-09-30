@@ -8,12 +8,18 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Employee'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Civilitees'), ['controller' => 'Civilitees', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Civilitee'), ['controller' => 'Civilitees', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Languages'), ['controller' => 'Languages', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Language'), ['controller' => 'Languages', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Positions'), ['controller' => 'Positions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Position'), ['controller' => 'Positions', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Locations'), ['controller' => 'Locations', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Location'), ['controller' => 'Locations', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Formations Employee'), ['controller' => 'FormationsEmployee', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Formations Employee'), ['controller' => 'FormationsEmployee', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="employees index large-9 medium-8 columns content">
@@ -21,6 +27,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('employee_number') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('civilite_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
@@ -33,25 +40,29 @@
                 <th scope="col"><?= $this->Paginator->sort('location_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('formation_plan_last_sent') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('active') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($employees as $employee): ?>
             <tr>
+                <td><?= $this->Number->format($employee->id) ?></td>
                 <td><?= h($employee->employee_number) ?></td>
-                <td><?= $this->Number->format($employee->civilite_id) ?></td>
+                <td><?= $employee->has('civilitee') ? $this->Html->link($employee->civilitee->id, ['controller' => 'Civilitees', 'action' => 'view', $employee->civilitee->id]) : '' ?></td>
                 <td><?= h($employee->name) ?></td>
                 <td><?= h($employee->last_name) ?></td>
-                <td><?= $this->Number->format($employee->language_id) ?></td>
+                <td><?= $employee->has('language') ? $this->Html->link($employee->language->id, ['controller' => 'Languages', 'action' => 'view', $employee->language->id]) : '' ?></td>
                 <td><?= $this->Number->format($employee->cellphone) ?></td>
-                <td><?= $employee->has('user') ? $this->Html->link($employee->user->name, ['controller' => 'Users', 'action' => 'view', $employee->user->id]) : '' ?></td>
+                <td><?= $this->Number->format($employee->user_id) ?></td>
                 <td><?= h($employee->email) ?></td>
                 <td><?= $employee->has('position') ? $this->Html->link($employee->position->name, ['controller' => 'Positions', 'action' => 'view', $employee->position->id]) : '' ?></td>
-                <td><?= $this->Number->format($employee->location_id) ?></td>
+                <td><?= $employee->has('location') ? $this->Html->link($employee->location->id, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>
                 <td><?= h($employee->formation_plan_last_sent) ?></td>
                 <td><?= h($employee->active) ?></td>
-
+                <td><?= h($employee->created) ?></td>
+                <td><?= h($employee->modified) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>

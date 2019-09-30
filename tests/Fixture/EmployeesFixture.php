@@ -73,10 +73,10 @@ class EmployeesFixture extends TestFixture
                 'position_id' => 1,
                 'location_id' => 1,
                 'extra_infos' => 'Lorem ipsum dolor sit amet',
-                'formation_plan_last_sent' => '2019-09-25 16:16:22',
+                'formation_plan_last_sent' => '2019-09-30 19:30:24',
                 'active' => 1,
-                'created' => '2019-09-25 16:16:22',
-                'modified' => '2019-09-25 16:16:22'
+                'created' => '2019-09-30 19:30:24',
+                'modified' => '2019-09-30 19:30:24'
             ],
         ];
         parent::init();

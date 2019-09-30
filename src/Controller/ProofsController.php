@@ -103,4 +103,9 @@ class ProofsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function isAuthorized($user)
+    {
+        return $user['role'] === 1 || $user['role'] === 0;
+    }
 }

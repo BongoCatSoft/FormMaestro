@@ -105,7 +105,8 @@ class LocationsController extends AppController
     }
     public function isAuthorized($user)
     {
-
-        return $user['role'] === 0 || $user['role'] === 1;
+        return $user['role'] === 1;
     }
+
+
 }

@@ -84,6 +84,7 @@
                 <td><?= h($employees->extra_infos) ?></td>
                 <td><?= h($employees->formation_plan_last_sent) ?></td>
                 <td><?= h($employees->active) ?></td>
+
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Employees', 'action' => 'view', $employees->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Employees', 'action' => 'edit', $employees->id]) ?>

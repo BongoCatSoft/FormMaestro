@@ -17,13 +17,12 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-	     public function initialize()
+		public function initialize()
     {
         parent::initialize();
         // Ajoute l'action 'add' à la liste des actions autorisées.
         $this->Auth->allow(['logout', 'add']);
     }
-
     public function index()
     {
         $users = $this->paginate($this->Users);
@@ -109,7 +108,6 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-
     }
     // Dans src/Controller/UsersController.php
     public function login()
@@ -135,7 +133,7 @@ class UsersController extends AppController
 
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['add'])) {
+        if (in_array($action, ['edit']) && $user['role'] === 0) {
             return true;
         }
 
@@ -148,5 +146,5 @@ class UsersController extends AppController
 
         return $user['role'] === 1;
     }
-
 }
+

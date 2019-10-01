@@ -61,10 +61,6 @@
             <td><?= $employee->has('location') ? $this->Html->link($employee->location->id, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($employee->id) ?></td>
-        </tr>
-        <tr>
             <th scope="row"><?= __('Cellphone') ?></th>
             <td><?= $this->Number->format($employee->cellphone) ?></td>
         </tr>
@@ -75,14 +71,6 @@
         <tr>
             <th scope="row"><?= __('Formation Plan Last Sent') ?></th>
             <td><?= h($employee->formation_plan_last_sent) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($employee->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($employee->modified) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Active') ?></th>

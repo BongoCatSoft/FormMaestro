@@ -47,6 +47,19 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 <body class="home">
 
 <header class="row">
+    <div class="top-bar-section">
+        <ul class="right">
+            <?php
+            if($this->Session->read('Auth.User')){
+                echo '<li><a href="users/logout">Logout<a/></li>';
+            }
+            else
+                echo '<li><a href="users/login">Login<a/></li>';
+            ?>
+            <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
+            <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+        </ul>
+    </div>
     <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
     <div class="header-title">
         <h1>Welcome to CakePHP <?= Configure::version() ?> Red Velvet. Build fast. Grow solid.</h1>

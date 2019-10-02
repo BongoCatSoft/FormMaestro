@@ -58,8 +58,8 @@
                 <th scope="col"><?= __('Name') ?></th>
                 <th scope="col"><?= __('Last Name') ?></th>
                 <th scope="col"><?= __('Language Id') ?></th>
-                <th scope="col"><?= __('Cellphone') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
+                <!--<th scope="col"><?//= __('Cellphone') ?></th>
+                <th scope="col"><?//= __('User Id') ?></th> -->
                 <th scope="col"><?= __('Email') ?></th>
                 <th scope="col"><?= __('Position Id') ?></th>
                 <th scope="col"><?= __('Location Id') ?></th>
@@ -76,8 +76,8 @@
                 <td><?= h($employees->name) ?></td>
                 <td><?= h($employees->last_name) ?></td>
                 <td><?= h($employees->language_id) ?></td>
-                <td><?= h($employees->cellphone) ?></td>
-                <td><?= h($employees->user_id) ?></td>
+               <!-- <td><?//= h($employees->cellphone) ?></td>
+                <td><?//= h($employees->user_id) ?></td> -->
                 <td><?= h($employees->email) ?></td>
                 <td><?= h($employees->position_id) ?></td>
                 <td><?= h($employees->location_id) ?></td>

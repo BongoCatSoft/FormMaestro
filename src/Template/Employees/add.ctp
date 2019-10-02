@@ -20,7 +20,8 @@
             echo $this->Form->control('name');
             echo $this->Form->control('last_name');
             echo $this->Form->control('language_id', ['options' => $languages]);
-            echo $this->Form->control('user_id');
+            /*echo $this->Form->control('cellphone');
+            echo $this->Form->control('user_id');*/
             echo $this->Form->control('email');
             echo $this->Form->control('position_id', ['options' => $positions]);
             echo $this->Form->control('location_id', ['options' => $locations]);

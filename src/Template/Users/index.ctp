@@ -33,7 +33,7 @@
                 <td><?= h($user->password) ?></td>
                 <td><?= h($user->name) ?></td>
                 <td><?= h($user->last_name) ?></td>
-                <td><?= $this->Number->format($user->employee_id) ?></td>
+               <!-- <td><?//= $this->Number->format($user->employee_id) ?></td>-->
                 <td><?= $this->Number->format($user->role) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>

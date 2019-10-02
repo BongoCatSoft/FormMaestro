@@ -47,10 +47,14 @@
             <th scope="row"><?= __('Location') ?></th>
             <td><?= $employee->has('location') ? $this->Html->link($employee->location->id, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('User Id') ?></th>
-            <td><?= $this->Number->format($employee->user_id) ?></td>
+       <!-- <tr>
+            <th scope="row"><?//= __('Cellphone') ?></th>
+            <td><?//= $this->Number->format($employee->cellphone) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?//= __('User Id') ?></th>
+            <td><?//= $this->Number->format($employee->user_id) ?></td>
+        </tr>-->
         <tr>
             <th scope="row"><?= __('Formation Plan Last Sent') ?></th>
             <td><?= h($employee->formation_plan_last_sent) ?></td>

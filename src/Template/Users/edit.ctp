@@ -27,7 +27,7 @@
             echo $this->Form->control('password');
             echo $this->Form->control('name');
             echo $this->Form->control('last_name');
-            echo $this->Form->control('employee_id');
+            //echo $this->Form->control('employee_id');
             echo $this->Form->control('role');
         ?>
     </fieldset>

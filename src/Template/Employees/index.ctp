@@ -22,7 +22,8 @@
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('language_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+               <!-- <th scope="col"><?//= $this->Paginator->sort('cellphone') ?></th>
+                <th scope="col"><?//= $this->Paginator->sort('user_id') ?></th>-->
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('position_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('location_id') ?></th>
@@ -39,7 +40,8 @@
                 <td><?= h($employee->name) ?></td>
                 <td><?= h($employee->last_name) ?></td>
                 <td><?= $employee->has('language') ? $this->Html->link($employee->language->id, ['controller' => 'Languages', 'action' => 'view', $employee->language->id]) : '' ?></td>
-                <td><?= $this->Number->format($employee->user_id) ?></td>
+                <!--<td><?//= $this->Number->format($employee->cellphone) ?></td>
+                <td><?//= $this->Number->format($employee->user_id) ?></td>-->
                 <td><?= h($employee->email) ?></td>
                 <td><?= $employee->has('position') ? $this->Html->link($employee->position->name, ['controller' => 'Positions', 'action' => 'view', $employee->position->id]) : '' ?></td>
                 <td><?= $employee->has('location') ? $this->Html->link($employee->location->id, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>

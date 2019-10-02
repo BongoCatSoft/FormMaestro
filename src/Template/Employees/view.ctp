@@ -10,20 +10,7 @@
         <li><?= $this->Html->link(__('Edit Employee'), ['action' => 'edit', $employee->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Employee'), ['action' => 'delete', $employee->id], ['confirm' => __('Are you sure you want to delete # {0}?', $employee->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Employees'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Employee'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Civilitees'), ['controller' => 'Civilitees', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Civilitee'), ['controller' => 'Civilitees', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Languages'), ['controller' => 'Languages', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Language'), ['controller' => 'Languages', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Positions'), ['controller' => 'Positions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Position'), ['controller' => 'Positions', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Locations'), ['controller' => 'Locations', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Location'), ['controller' => 'Locations', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Formations Employee'), ['controller' => 'FormationsEmployee', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Formations Employee'), ['controller' => 'FormationsEmployee', 'action' => 'add']) ?> </li>
-    </ul>
+        <li><?= $this->Html->link(__('List Formations'), ['action' => 'index']) ?> </li></ul>
 </nav>
 <div class="employees view large-9 medium-8 columns content">
     <h3><?= h($employee->name) ?></h3>
@@ -59,10 +46,6 @@
         <tr>
             <th scope="row"><?= __('Location') ?></th>
             <td><?= $employee->has('location') ? $this->Html->link($employee->location->id, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Cellphone') ?></th>
-            <td><?= $this->Number->format($employee->cellphone) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('User Id') ?></th>

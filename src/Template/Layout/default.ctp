@@ -43,14 +43,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="top-bar-section">
             <ul class="right">
                 <?php
-                if($this->Session->read('Auth.User')){
-                    echo '<li><a href="users/logout">Logout<a/></li>';
+                $loguser = $this->request->session()->read('Auth.User');
+                if ($loguser) {
+                    $user = $loguser['email'];
+                    echo $this->Html->link($user . ' logout', ['controller' => 'Users', 'action' => 'logout']);
+                } else {
+                    echo $this->Html->link('login', ['controller' => 'Users', 'action' => 'login']);
                 }
-                else
-                    echo '<li><a href="users/login">Login<a/></li>';
                 ?>
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
             </ul>
         </div>
     </nav>

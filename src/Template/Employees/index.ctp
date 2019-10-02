@@ -8,18 +8,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Employee'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Civilitees'), ['controller' => 'Civilitees', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Civilitee'), ['controller' => 'Civilitees', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Languages'), ['controller' => 'Languages', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Language'), ['controller' => 'Languages', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Positions'), ['controller' => 'Positions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Position'), ['controller' => 'Positions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Locations'), ['controller' => 'Locations', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Location'), ['controller' => 'Locations', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Formations Employee'), ['controller' => 'FormationsEmployee', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Formations Employee'), ['controller' => 'FormationsEmployee', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Formations'), ['action' => 'index']) ?> </li>
+
     </ul>
 </nav>
 <div class="employees index large-9 medium-8 columns content">
@@ -32,7 +22,6 @@
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('language_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cellphone') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('position_id') ?></th>
@@ -50,7 +39,6 @@
                 <td><?= h($employee->name) ?></td>
                 <td><?= h($employee->last_name) ?></td>
                 <td><?= $employee->has('language') ? $this->Html->link($employee->language->id, ['controller' => 'Languages', 'action' => 'view', $employee->language->id]) : '' ?></td>
-                <td><?= $this->Number->format($employee->cellphone) ?></td>
                 <td><?= $this->Number->format($employee->user_id) ?></td>
                 <td><?= h($employee->email) ?></td>
                 <td><?= $employee->has('position') ? $this->Html->link($employee->position->name, ['controller' => 'Positions', 'action' => 'view', $employee->position->id]) : '' ?></td>

@@ -18,3 +18,4 @@ deployment:
     - /bin/cp composer.lock $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp phpunit.xml.dist $DEPLOYPATH
+    - /bin/cp -R GoodConfig/app.php /home/bongocat/public_html/config

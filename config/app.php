@@ -264,8 +264,8 @@ return [
              */
             //'port' => 'non_standard_port_number',
             'username' => 'root',
-            'password' => 'R00tP455w0rd',
-            'database' => 'bongocat_formmaestro',
+            'password' => 'root',
+            'database' => 'formmaestro',
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
              */
@@ -307,8 +307,8 @@ return [
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
             'username' => 'root',
-            'password' => 'R00tP455w0rd',
-            'database' => 'bongocat_formmaestro',
+            'password' => 'root',
+            'database' => 'frommaestro',
             //'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,

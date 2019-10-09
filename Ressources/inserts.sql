@@ -19,3 +19,5 @@ insert into formations value (11,"Secouriste/premiers soins/RCR (2 jours)","Sant
 insert into formations value (12,"Halocabures C.S.C","Environnement","Aux 5 ans","Année 1","Extrne",2,"");
 insert into formations value (13,"Transport de matières dangereuses","Environnement","Aux 3 ans","Année 1","Extrne",3,"");
 insert into formations value (14,"Manipulation de l'amiante","Environnement","Aux 3 ans","Année 1","Extrne",4.5,"");
+
+INSERT INTO `frequences` (`id`, `title`) VALUES (NULL, 'A l\'embauche\r\n'), (NULL, 'Au 1 an\r\n'), (NULL, 'Aux 2 ans\r\n'), (NULL, 'Aux 3 ans\r\n'), (NULL, 'Aux 5 ans\r\n');

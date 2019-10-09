@@ -42,6 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
+                <li>
                 <?php
                 $loguser = $this->request->session()->read('Auth.User');
                 if ($loguser) {
@@ -51,6 +52,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     echo $this->Html->link('login', ['controller' => 'Users', 'action' => 'login']);
                 }
                 ?>
+                </li>
             </ul>
         </div>
     </nav>

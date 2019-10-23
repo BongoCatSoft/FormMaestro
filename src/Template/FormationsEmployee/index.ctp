@@ -33,7 +33,7 @@
             <?php foreach ($formationsEmployee as $formationsEmployee): ?>
             <tr>
                 <td><?= $this->Number->format($formationsEmployee->id) ?></td>
-                <td><?= $formationsEmployee->has('employee') ? $this->Html->link($formationsEmployee->employee->name, ['controller' => 'Employees', 'action' => 'view', $formationsEmployee->employee->id]) : '' ?></td>
+                <td><?= $formationsEmployee->has('employee') ? $this->Html->link($formationsEmployee->employee->FullName, ['controller' => 'Employees', 'action' => 'view', $formationsEmployee->employee->id]) : '' ?></td>
                 <td><?= $formationsEmployee->has('formation') ? $this->Html->link($formationsEmployee->formation->name, ['controller' => 'Formations', 'action' => 'view', $formationsEmployee->formation->id]) : '' ?></td>
                 <td><?= h($formationsEmployee->date_executee) ?></td>
                 <td><?= $formationsEmployee->has('proof') ? $this->Html->link($formationsEmployee->proof->id, ['controller' => 'Proofs', 'action' => 'view', $formationsEmployee->proof->id]) : '' ?></td>

@@ -24,7 +24,7 @@
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Employee') ?></th>
-            <td><?= $formationsEmployee->has('employee') ? $this->Html->link($formationsEmployee->employee->name, ['controller' => 'Employees', 'action' => 'view', $formationsEmployee->employee->id]) : '' ?></td>
+            <td><?= $formationsEmployee->has('employee') ? $this->Html->link($formationsEmployee->employee->FullName, ['controller' => 'Employees', 'action' => 'view', $formationsEmployee->employee->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Formation') ?></th>

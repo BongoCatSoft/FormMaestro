@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Formation') ?></th>
-            <td><?= $formationsPosition->has('formation') ? $this->Html->link($formationsPosition->formation->name, ['controller' => 'Formations', 'action' => 'view', $formationsPosition->formation->id]) : '' ?></td>
+            <td><?= $formationsPosition->has('formation') ? $this->Html->link($formationsPosition->formation->titre, ['controller' => 'Formations', 'action' => 'view', $formationsPosition->formation->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Proof') ?></th>

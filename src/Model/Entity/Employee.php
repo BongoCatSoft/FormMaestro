@@ -64,4 +64,8 @@ class Employee extends Entity
         'location' => true,
         'formations_employee' => true
     ];
+
+    protected function _getFullName(){
+        return $this->_properties['name'] . " " . $this->_properties['last_name'];
+    }
 }

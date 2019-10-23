@@ -8,6 +8,7 @@ use App\Controller\AppController;
  *
  * @property \App\Model\Table\FormationsTable $Formations
  *
+ *
  * @method \App\Model\Entity\Formation[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class FormationsController extends AppController
@@ -57,7 +58,10 @@ class FormationsController extends AppController
             }
             $this->Flash->error(__('The formation could not be saved. Please, try again.'));
         }
-        $this->set(compact('formation'));
+        $frequence = $this->Formations->Frequences->find('list',['limit'=>200]);
+        $modalite = $this->Formations->Modalities->find('list',['limit'=>200]);
+        $rappel = $this->Formations->Reminders->find('list',['limit'=>200]);
+        $this->set(compact('formation','rappel','modalite','frequence'));
     }
 
     /**

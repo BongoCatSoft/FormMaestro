@@ -19,10 +19,9 @@
         <?php
             echo $this->Form->control('titre');
             echo $this->Form->control('categorie');
-            echo $this->Form->control('frequence');
-            echo $this->Form->control('debut_rappel');
-            //echo $this->Form->control('debut_rappel', ['options' => $debut_rappels]);
-            echo $this->Form->control('modalite');
+            echo $this->Form->control('frequence',['options'=>$frequence]);
+            echo $this->Form->control('debut_rappel',['options'=>$rappel]);
+            echo $this->Form->control('modalite',['options'=>$modalite]);
             echo $this->Form->control('duree');
             echo $this->Form->control('remarque');
         ?>

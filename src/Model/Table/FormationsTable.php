@@ -43,6 +43,15 @@ class FormationsTable extends Table
         $this->hasMany('FormationsPosition', [
             'foreignKey' => 'formation_id'
         ]);
+        $this->hasMany('Reminders', [
+            'foreignkey' => 'reminder_id'
+        ]);
+        $this->hasMany('Modalities',[
+            'foreignkey' => 'modality_id'
+        ]);
+        $this->hasMany('Frequences',[
+            'foreignkey' => 'frequence_id'
+        ]);
     }
 
     /**
@@ -75,7 +84,7 @@ class FormationsTable extends Table
             ->requirePresence('frequence', 'create')
             ->notEmptyString('frequence');
 
-        $validator
+       $validator
             ->scalar('debut_rappel')
             ->maxLength('debut_rappel', 255)
             ->requirePresence('debut_rappel', 'create')

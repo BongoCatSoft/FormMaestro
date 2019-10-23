@@ -130,4 +130,9 @@ class EmployeesController extends AppController
 
         return $user['role'] === 1;
     }
+
+    public function find($email){
+
+
+    }
 }

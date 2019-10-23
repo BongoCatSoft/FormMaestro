@@ -33,7 +33,7 @@ class LanguagesTable extends Table
         parent::initialize($config);
 
         $this->setTable('languages');
-        $this->setDisplayField('id');
+        $this->setDisplayField('langue');
         $this->setPrimaryKey('id');
 
         $this->hasMany('Employees', [

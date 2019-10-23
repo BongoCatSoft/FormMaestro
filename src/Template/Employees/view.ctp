@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Civilitee') ?></th>
-            <td><?= $employee->has('civilitee') ? $this->Html->link($employee->civilitee->id, ['controller' => 'Civilitees', 'action' => 'view', $employee->civilitee->id]) : '' ?></td>
+            <td><?= $employee->has('civilitee') ? $this->Html->link($employee->civilitee->civilite, ['controller' => 'Civilitees', 'action' => 'view', $employee->civilitee->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Name') ?></th>
@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Language') ?></th>
-            <td><?= $employee->has('language') ? $this->Html->link($employee->language->id, ['controller' => 'Languages', 'action' => 'view', $employee->language->id]) : '' ?></td>
+            <td><?= $employee->has('language') ? $this->Html->link($employee->language->langue, ['controller' => 'Languages', 'action' => 'view', $employee->language->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Email') ?></th>
@@ -45,7 +45,7 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Location') ?></th>
-            <td><?= $employee->has('location') ? $this->Html->link($employee->location->id, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>
+            <td><?= $employee->has('location') ? $this->Html->link($employee->location->address, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>
         </tr>
        <!-- <tr>
             <th scope="row"><?//= __('Cellphone') ?></th>

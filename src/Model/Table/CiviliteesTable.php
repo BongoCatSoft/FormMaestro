@@ -31,7 +31,7 @@ class CiviliteesTable extends Table
         parent::initialize($config);
 
         $this->setTable('civilitees');
-        $this->setDisplayField('id');
+        $this->setDisplayField('civilite');
         $this->setPrimaryKey('id');
     }
 

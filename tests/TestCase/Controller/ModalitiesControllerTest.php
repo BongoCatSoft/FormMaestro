@@ -1,16 +1,16 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\FormationsController;
+use App\Controller\ModalitiesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\FormationsController Test Case
+ * App\Controller\ModalitiesController Test Case
  *
- * @uses \App\Controller\FormationsController
+ * @uses \App\Controller\ModalitiesController
  */
-class FormationsControllerTest extends TestCase
+class ModalitiesControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -20,12 +20,8 @@ class FormationsControllerTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Formations',
-        'app.Frequences',
-        'app.Reminders',
         'app.Modalities',
-        'app.FormationsEmployee',
-        'app.FormationsPosition'
+        'app.Formations'
     ];
 
     /**

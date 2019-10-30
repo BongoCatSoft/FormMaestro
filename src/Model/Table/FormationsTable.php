@@ -9,8 +9,11 @@ use Cake\Validation\Validator;
 /**
  * Formations Model
  *
- * @property &\Cake\ORM\Association\HasMany $FormationsEmployee
- * @property &\Cake\ORM\Association\HasMany $FormationsPosition
+ * @property \App\Model\Table\FrequencesTable&\Cake\ORM\Association\BelongsTo $Frequences
+ * @property \App\Model\Table\RemindersTable&\Cake\ORM\Association\BelongsTo $Reminders
+ * @property \App\Model\Table\ModalitiesTable&\Cake\ORM\Association\BelongsTo $Modalities
+ * @property \App\Model\Table\FormationsEmployeeTable&\Cake\ORM\Association\HasMany $FormationsEmployee
+ * @property \App\Model\Table\FormationsPositionTable&\Cake\ORM\Association\HasMany $FormationsPosition
  *
  * @method \App\Model\Entity\Formation get($primaryKey, $options = [])
  * @method \App\Model\Entity\Formation newEntity($data = null, array $options = [])
@@ -37,20 +40,23 @@ class FormationsTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
+        $this->belongsTo('Frequences', [
+            'foreignKey' => 'frequence_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Reminders', [
+            'foreignKey' => 'reminder_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Modalities', [
+            'foreignKey' => 'modality_id',
+            'joinType' => 'INNER'
+        ]);
         $this->hasMany('FormationsEmployee', [
             'foreignKey' => 'formation_id'
         ]);
         $this->hasMany('FormationsPosition', [
             'foreignKey' => 'formation_id'
-        ]);
-        $this->hasMany('Reminders', [
-            'foreignkey' => 'reminder_id'
-        ]);
-        $this->hasMany('Modalities',[
-            'foreignkey' => 'modality_id'
-        ]);
-        $this->hasMany('Frequences',[
-            'foreignkey' => 'frequence_id'
         ]);
     }
 
@@ -79,24 +85,6 @@ class FormationsTable extends Table
             ->notEmptyString('categorie');
 
         $validator
-            ->scalar('frequence')
-            ->maxLength('frequence', 255)
-            ->requirePresence('frequence', 'create')
-            ->notEmptyString('frequence');
-
-       $validator
-            ->scalar('debut_rappel')
-            ->maxLength('debut_rappel', 255)
-            ->requirePresence('debut_rappel', 'create')
-            ->notEmptyString('debut_rappel');
-
-        $validator
-            ->scalar('modalite')
-            ->maxLength('modalite', 255)
-            ->requirePresence('modalite', 'create')
-            ->notEmptyString('modalite');
-
-        $validator
             ->integer('duree')
             ->requirePresence('duree', 'create')
             ->notEmptyString('duree');
@@ -107,5 +95,21 @@ class FormationsTable extends Table
             ->allowEmptyString('remarque');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->existsIn(['frequence_id'], 'Frequences'));
+        $rules->add($rules->existsIn(['reminder_id'], 'Reminders'));
+        $rules->add($rules->existsIn(['modality_id'], 'Modalities'));
+
+        return $rules;
     }
 }

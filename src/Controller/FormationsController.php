@@ -8,7 +8,6 @@ use App\Controller\AppController;
  *
  * @property \App\Model\Table\FormationsTable $Formations
  *
- *
  * @method \App\Model\Entity\Formation[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class FormationsController extends AppController
@@ -20,6 +19,9 @@ class FormationsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Frequences', 'Reminders', 'Modalities']
+        ];
         $formations = $this->paginate($this->Formations);
 
         $this->set(compact('formations'));
@@ -35,7 +37,7 @@ class FormationsController extends AppController
     public function view($id = null)
     {
         $formation = $this->Formations->get($id, [
-            'contain' => []
+            'contain' => ['Frequences', 'Reminders', 'Modalities', 'FormationsEmployee', 'FormationsPosition']
         ]);
 
         $this->set('formation', $formation);
@@ -58,10 +60,10 @@ class FormationsController extends AppController
             }
             $this->Flash->error(__('The formation could not be saved. Please, try again.'));
         }
-        $frequence = $this->Formations->Frequences->find('list',['limit'=>200]);
-        $modalite = $this->Formations->Modalities->find('list',['limit'=>200]);
-        $rappel = $this->Formations->Reminders->find('list',['limit'=>200]);
-        $this->set(compact('formation','rappel','modalite','frequence'));
+        $frequences = $this->Formations->Frequences->find('list', ['limit' => 200]);
+        $reminders = $this->Formations->Reminders->find('list', ['limit' => 200]);
+        $modalities = $this->Formations->Modalities->find('list', ['limit' => 200]);
+        $this->set(compact('formation', 'frequences', 'reminders', 'modalities'));
     }
 
     /**
@@ -85,7 +87,10 @@ class FormationsController extends AppController
             }
             $this->Flash->error(__('The formation could not be saved. Please, try again.'));
         }
-        $this->set(compact('formation'));
+        $frequences = $this->Formations->Frequences->find('list', ['limit' => 200]);
+        $reminders = $this->Formations->Reminders->find('list', ['limit' => 200]);
+        $modalities = $this->Formations->Modalities->find('list', ['limit' => 200]);
+        $this->set(compact('formation', 'frequences', 'reminders', 'modalities'));
     }
 
     /**
@@ -107,7 +112,6 @@ class FormationsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
     public function isAuthorized($user)
     {
 

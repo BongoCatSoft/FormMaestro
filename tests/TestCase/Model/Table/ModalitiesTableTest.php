@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\FormationsTable;
+use App\Model\Table\ModalitiesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\FormationsTable Test Case
+ * App\Model\Table\ModalitiesTable Test Case
  */
-class FormationsTableTest extends TestCase
+class ModalitiesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\FormationsTable
+     * @var \App\Model\Table\ModalitiesTable
      */
-    public $Formations;
+    public $Modalities;
 
     /**
      * Fixtures
@@ -23,12 +23,8 @@ class FormationsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Formations',
-        'app.Frequences',
-        'app.Reminders',
         'app.Modalities',
-        'app.FormationsEmployee',
-        'app.FormationsPosition'
+        'app.Formations'
     ];
 
     /**
@@ -39,8 +35,8 @@ class FormationsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Formations') ? [] : ['className' => FormationsTable::class];
-        $this->Formations = TableRegistry::getTableLocator()->get('Formations', $config);
+        $config = TableRegistry::getTableLocator()->exists('Modalities') ? [] : ['className' => ModalitiesTable::class];
+        $this->Modalities = TableRegistry::getTableLocator()->get('Modalities', $config);
     }
 
     /**
@@ -50,7 +46,7 @@ class FormationsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Formations);
+        unset($this->Modalities);
 
         parent::tearDown();
     }
@@ -71,16 +67,6 @@ class FormationsTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

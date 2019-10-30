@@ -18,7 +18,7 @@ class HomeController extends AppController{
             $email = $this->request->getData(['Courriel']);
             $employee = $this->trouverEmployee($email);
 
-            $this->sendEmail($employee);
+            var_dump($employee);
             $this->Flash->success('Si un utilisateur est lié à ce courriel, le plan de formation lui seras envoyé.');
         }
 
@@ -31,9 +31,27 @@ class HomeController extends AppController{
         return $Employees->find('all')->where(['Employees.email >' => $email])->first();
     }
 
-    public function sendEmail($employee)
+    public function sendEmail($courriel)
     {
-        Email::deliver('notifications@bongocatsoft.ca', 'Subject', 'Message', ['from' => 'admin@bongocatsoft.com']);
+        $email = new Email('default');
+        $email->to($courriel)->setSubject(__('Plan de formation'))->send(__('Cliquez sur le lien suivant pour confirmer votre courriel sur le site Plant Inventory : ') .
+            $user->link = "http://" . $_SERVER['HTTP_HOST'] . $this->request->webroot .
+                "users/confirm/");
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

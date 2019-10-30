@@ -10,7 +10,6 @@
         <li><?= $this->Html->link(__('New Formation'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('New Employees'), ['controller' => 'Employees', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Employees'), ['controller' => 'Employees', 'action' => 'index']) ?></li>
-
     </ul>
 </nav>
 <div class="formations index large-9 medium-8 columns content">
@@ -18,11 +17,12 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('titre') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('categorie') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('frequence') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('debut_rappel') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modalite') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('frequence_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('reminder_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('modality_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('duree') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('remarque') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -31,11 +31,12 @@
         <tbody>
             <?php foreach ($formations as $formation): ?>
             <tr>
+                <td><?= $this->Number->format($formation->id) ?></td>
                 <td><?= h($formation->titre) ?></td>
                 <td><?= h($formation->categorie) ?></td>
-                <td><?= h($formation->frequence) ?></td>
-                <td><?= h($formation->debut_rappel) ?></td>
-                <td><?= h($formation->modalite) ?></td>
+                <td><?= $formation->has('frequence') ? $this->Html->link($formation->frequence->title, ['controller' => 'Frequences', 'action' => 'view', $formation->frequence->id]) : '' ?></td>
+                <td><?= $formation->has('reminder') ? $this->Html->link($formation->reminder->title, ['controller' => 'Reminders', 'action' => 'view', $formation->reminder->id]) : '' ?></td>
+                <td><?= $formation->has('modality') ? $this->Html->link($formation->modality->title, ['controller' => 'Modalities', 'action' => 'view', $formation->modality->id]) : '' ?></td>
                 <td><?= $this->Number->format($formation->duree) ?></td>
                 <td><?= h($formation->remarque) ?></td>
                 <td class="actions">

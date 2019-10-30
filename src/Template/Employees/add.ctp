@@ -8,7 +8,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Employees'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Formations'), ['action' => 'index']) ?> </li> </ul>
+        <li><?= $this->Html->link(__('List Formations'), ['controller' => 'Formations', 'action' => 'index']) ?> </li>
+    </ul>
 </nav>
 <div class="employees form large-9 medium-8 columns content">
     <?= $this->Form->create($employee) ?>

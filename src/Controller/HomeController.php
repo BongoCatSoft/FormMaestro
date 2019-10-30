@@ -34,8 +34,8 @@ class HomeController extends AppController{
     public function sendEmail($courriel)
     {
         $email = new Email('default');
-        $email->to($courriel)->setSubject(__('Plan de formation'))->send(__('Cliquez sur le lien suivant pour confirmer votre courriel sur le site Plant Inventory : ') .
-            $user->link = "http://" . $_SERVER['HTTP_HOST'] . $this->request->webroot .
+        $email->setTo($courriel)->setSubject(__('Plan de formation'))->send(__('Cliquez sur le lien suivant pour confirmer votre courriel sur le site Plant Inventory : ') .
+            $user->link = "http://" . $_SERVER['HTTP_HOST'] . $this->request->getWebroot .
                 "users/confirm/");
     }
 

@@ -3,6 +3,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
+
 /**
  * Employee Entity
  *
@@ -32,6 +33,7 @@ use Cake\ORM\Entity;
  */
 class Employee extends Entity
 {
+
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -64,6 +66,7 @@ class Employee extends Entity
         'location' => true,
         'formations_employee' => true
     ];
+
 
     protected function _getFullName(){
         return $this->_properties['name'] . " " . $this->_properties['last_name'];

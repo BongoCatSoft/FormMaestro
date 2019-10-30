@@ -6,6 +6,8 @@ use App\Model\Entity\Employee;
 use Cake\Core\App;
 use Cake\Mailer\Email;
 use App\Controller\EmployeesController;
+use Cake\ORM\TableRegistry;
+
 
 class HomeController extends AppController{
 
@@ -17,7 +19,6 @@ class HomeController extends AppController{
             $employee = $this->trouverEmployee($email);
 
             var_dump($employee);
-            //$this->sendEmail($email);
             $this->Flash->success('Si un utilisateur est lié à ce courriel, le plan de formation lui seras envoyé.');
         }
 
@@ -25,11 +26,9 @@ class HomeController extends AppController{
 
     public function trouverEmployee($email){
 
-        $Employee = new Employee();
-        //FIXME : Comment trouver l'employee avec le courriel ?
-        $Employee = $Employee->find('all')->where(['Employees.email >' => $email]);
+        $Employees = TableRegistry::getTableLocator()->get('Employees');
 
-        return $Employee;
+        return $Employees->find('all')->where(['Employees.email >' => $email])->first();
     }
 
     public function sendEmail($courriel)

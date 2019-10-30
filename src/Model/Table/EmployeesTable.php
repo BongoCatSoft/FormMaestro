@@ -30,6 +30,8 @@ use Cake\Validation\Validator;
  */
 class EmployeesTable extends Table
 {
+
+
     /**
      * Initialize method
      *
@@ -143,4 +145,5 @@ class EmployeesTable extends Table
 
         return $rules;
     }
+
 }

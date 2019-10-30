@@ -97,7 +97,6 @@ CREATE TABLE `formations_position` (
   `id` int(11) NOT NULL,
   `position_id` int(11) NOT NULL,
   `formation_id` int(11) NOT NULL,
-  `proof_id` int(11) DEFAULT NULL,
   `status_formation` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -272,7 +271,7 @@ ALTER TABLE `formations_employee`
 ALTER TABLE `formations_position`
   ADD PRIMARY KEY (`id`),
   ADD KEY `formation_id_position` (`formation_id`),
-  ADD KEY `proof_id_position` (`position_id`);
+  ADD KEY `position_id_position` (`position_id`);
 
 --
 -- Index pour la table `frequences`
@@ -428,8 +427,6 @@ ALTER TABLE `formations_employee`
 ALTER TABLE `formations_position`
   ADD CONSTRAINT `formation_id_position` FOREIGN KEY (`formation_id`) REFERENCES `formations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `position_id_position` FOREIGN KEY (`position_id`) REFERENCES `positions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `proof_id_position` FOREIGN KEY (`position_id`) REFERENCES `proofs` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 --
 -- Contraintes pour la table `users`
 --

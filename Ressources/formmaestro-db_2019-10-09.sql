@@ -89,7 +89,7 @@ create table proofs
     id                 int auto_increment
         primary key,
     original_file_name varchar(255) not null,
-    upload_date        datetime     null
+    created        datetime     null
 )
     charset = utf8;
 

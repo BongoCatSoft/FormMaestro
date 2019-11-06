@@ -21,7 +21,7 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('original_file_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('upload_date') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -30,7 +30,7 @@
             <tr>
                 <td><?= $this->Number->format($proof->id) ?></td>
                 <td><?= h($proof->original_file_name) ?></td>
-                <td><?= h($proof->upload_date) ?></td>
+                <td><?= h($proof->created) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $proof->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $proof->id]) ?>

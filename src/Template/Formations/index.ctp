@@ -17,8 +17,8 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('titre') ?></th>
+                <!--<th scope="col"><?= $this->Paginator->sort('id') ?></th>!-->
+                <th scope="col"><?= $this->Paginator->sort('Nom') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('categorie') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('frequence_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('reminder_id') ?></th>
@@ -31,7 +31,7 @@
         <tbody>
             <?php foreach ($formations as $formation): ?>
             <tr>
-                <td><?= $this->Number->format($formation->id) ?></td>
+                <!--<td><?= $this->Number->format($formation->id) ?></td>!-->
                 <td><?= h($formation->titre) ?></td>
                 <td><?= h($formation->categorie) ?></td>
                 <td><?= $formation->has('frequence') ? $this->Html->link($formation->frequence->title, ['controller' => 'Frequences', 'action' => 'view', $formation->frequence->id]) : '' ?></td>

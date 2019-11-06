@@ -29,8 +29,8 @@
             <td><?= $this->Number->format($proof->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Upload Date') ?></th>
-            <td><?= h($proof->upload_date) ?></td>
+            <th scope="row"><?= __('Created') ?></th>
+            <td><?= h($proof->created) ?></td>
         </tr>
     </table>
     <div class="related">

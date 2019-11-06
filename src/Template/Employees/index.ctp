@@ -22,13 +22,13 @@
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('language_id') ?></th>
-               <!-- <th scope="col"><?//= $this->Paginator->sort('cellphone') ?></th>
-                <th scope="col"><?//= $this->Paginator->sort('user_id') ?></th>-->
+                <th scope="col"><?= $this->Paginator->sort('cellphone') ?></th>
+                <!--<th scope="col"><?//= $this->Paginator->sort('user_id') ?></th>-->
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('position_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('location_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('formation_plan_last_sent') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('active') ?></th>
+                <!--<th scope="col"><?= $this->Paginator->sort('active') ?></th>!-->
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -40,13 +40,13 @@
                 <td><?= h($employee->name) ?></td>
                 <td><?= h($employee->last_name) ?></td>
                 <td><?= $employee->has('language') ? $this->Html->link($employee->language->langue, ['controller' => 'Languages', 'action' => 'view', $employee->language->id]) : '' ?></td>
-                <!--<td><?//= $this->Number->format($employee->cellphone) ?></td>
-                <td><?//= $this->Number->format($employee->user_id) ?></td>-->
+                <td><?= h($employee->cellphone) ?></td>
+               <!-- <td><?//= $this->Number->format($employee->user_id) ?></td>-->
                 <td><?= h($employee->email) ?></td>
                 <td><?= $employee->has('position') ? $this->Html->link($employee->position->name, ['controller' => 'Positions', 'action' => 'view', $employee->position->id]) : '' ?></td>
                 <td><?= $employee->has('location') ? $this->Html->link($employee->location->address, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>
                 <td><?= h($employee->formation_plan_last_sent) ?></td>
-                <td><?= h($employee->active) ?></td>
+               <!-- <td><?= h($employee->active) ?></td> !-->
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>

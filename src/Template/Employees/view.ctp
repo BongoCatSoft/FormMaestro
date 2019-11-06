@@ -10,7 +10,7 @@
         <li><?= $this->Html->link(__('Edit Employee'), ['action' => 'edit', $employee->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Employee'), ['action' => 'delete', $employee->id], ['confirm' => __('Are you sure you want to delete # {0}?', $employee->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Employees'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('List Formations'), ['controller' => 'Formations', 'action' => 'index']) ?> </li></ul>
+       <li><?= $this->Html->link(__('List Formations'), ['controller' => 'Formations', 'action' => 'index']) ?> </li></ul>
 </nav>
 <div class="employees view large-9 medium-8 columns content">
     <h3><?= h($employee->name) ?></h3>

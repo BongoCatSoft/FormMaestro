@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\Entity\Formation;
 
 /**
  * Employees Controller
@@ -130,6 +131,13 @@ class EmployeesController extends AppController
 
         return $user['role'] === 1;
     }
+
+    public function plan($id){
+        $formation = $this->Employees->FormationsEmployee->find()->where(['employee_id' =>$id]);
+        $employee = $this->Employees->get($id, [
+            'contain' => []
+        ]);
+}
 
     public function find($email){
 

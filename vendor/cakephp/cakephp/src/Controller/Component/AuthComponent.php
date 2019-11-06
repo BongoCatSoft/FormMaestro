@@ -701,6 +701,7 @@ class AuthComponent extends Component
         $this->storage()->delete();
 
         return Router::normalize($this->_config['logoutRedirect']);
+
     }
 
     /**

@@ -16,7 +16,7 @@ class HomeController extends AppController{
         return true;
     }
 
-    public function index(){
+    public function home(){
 
         if ($this->request->is('post')) {
 

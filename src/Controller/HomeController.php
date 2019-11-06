@@ -11,6 +11,11 @@ use Cake\ORM\TableRegistry;
 
 class HomeController extends AppController{
 
+    public function isAuthorized($user)
+    {
+        return true;
+    }
+
     public function index(){
 
         if ($this->request->is('post')) {

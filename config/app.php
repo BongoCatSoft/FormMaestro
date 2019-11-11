@@ -218,6 +218,14 @@ return [
             'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+
+        'gmail' => [
+            'host' => 'ssl://smtp.gmail.com',
+            'port' => 465,
+            'username' =>'bongocatsoft@gmail.com',
+            'password' => 'xsmoltgtkwwvhoec',
+            'className' => 'Smtp'
+        ],
     ],
 
     /**
@@ -231,8 +239,8 @@ return [
      */
     'Email' => [
         'default' => [
-            'transport' => 'default',
-            'from' => 'you@localhost',
+            'transport' => 'gmail',
+            'from' => 'bongocatsoft@gmail.com',
             //'charset' => 'utf-8',
             //'headerCharset' => 'utf-8',
         ],
@@ -265,7 +273,7 @@ return [
             //'port' => 'non_standard_port_number',
             'username' => 'root',
             'password' => 'root',
-            'database' => 'formmaestro',
+            'database' => 'frommaestro',
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
              */

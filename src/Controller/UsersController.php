@@ -126,7 +126,7 @@ class UsersController extends AppController
     {
         $this->Flash->success('Vous avez été déconnecté.');
         $this->Auth->logout();
-        return $this->redirect(['controller' => 'home', 'action' => 'index']);
+        return $this->redirect(['controller' => 'home', 'action' => 'home']);
 
 
     }

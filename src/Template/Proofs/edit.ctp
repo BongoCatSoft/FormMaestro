@@ -25,7 +25,7 @@
     <fieldset>
         <legend><?= __('Edit Proof') ?></legend>
         <?php
-            echo $this->Form->control('original_file_name');
+        echo $this->Form->control('original_file_name', ['type' => 'file']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

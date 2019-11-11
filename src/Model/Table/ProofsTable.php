@@ -20,8 +20,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Proof patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Proof[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Proof findOrCreate($search, callable $callback = null, $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ProofsTable extends Table
 {
@@ -38,8 +36,6 @@ class ProofsTable extends Table
         $this->setTable('proofs');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-
-        $this->addBehavior('Timestamp');
 
         $this->hasMany('FormationsEmployee', [
             'foreignKey' => 'proof_id'
@@ -66,6 +62,10 @@ class ProofsTable extends Table
             ->maxLength('original_file_name', 255)
             ->requirePresence('original_file_name', 'create')
             ->notEmptyFile('original_file_name');
+
+        $validator
+            ->dateTime('upload_date')
+            ->allowEmptyDateTime('upload_date');
 
         return $validator;
     }

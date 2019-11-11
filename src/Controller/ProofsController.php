@@ -45,32 +45,19 @@ class ProofsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add() {
-
-       $file = $this->Proofs->newEntity();
+    public function add()
+    {
+        $proof = $this->Proofs->newEntity();
         if ($this->request->is('post')) {
-            if (!empty($this->request->data['name']['name'])) {
-                $original_file_name = $this->request->data['name']['name'];
-                $uploadPath = 'Files/';
-                $uploadFile = $uploadPath . $original_file_name;
-                if (move_uploaded_file($this->request->data['name']['tmp_name'], 'img/' . $uploadFile)) {
-                    $file = $this->Proofs->patchEntity($file, $this->request->getData());
-                    var_dump($file);
-                    $file->name = $original_file_name;
-                    if ($this->Proofs->save($file)) {
-                        $this->Flash->success(__('File has been uploaded and inserted successfully.'));
-                    } else {
-                        $this->Flash->error(__('Unable to upload file, please try again.'));
-                    }
-                } else {
-                    $this->Flash->error(__('Unable to save file, please try again.'));
-                }
-            } else {
-                $this->Flash->error(__('Please choose a file to upload.'));
-            }
+            $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
+            if ($this->Proofs->save($proof)) {
+                $this->Flash->success(__('The proof has been saved.'));
 
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The proof could not be saved. Please, try again.'));
         }
-        $this->set(compact('file'));
+        $this->set(compact('proof'));
     }
 
     /**
@@ -118,6 +105,17 @@ class ProofsController extends AppController
     }
     public function isAuthorized($user)
     {
-        return $user['role'] === 1 || $user['role'] === 0;
+
+        $action = $this->request->getParam('action');
+        // The add and tags actions are always allowed to logged in users.
+        if (in_array($action, ['add', 'edit'] ) && $user['role'] === 0) {
+            return true;
+        }
+
+        // All other actions require a slug.
+        $id = $this->request->getParam('pass.0');
+
+        return $user['role'] === 1;
     }
+
 }

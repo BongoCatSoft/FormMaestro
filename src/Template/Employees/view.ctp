@@ -106,8 +106,8 @@
         <?php if (!empty($employee->formations_employee)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Employee Id') ?></th>
+                <!--<th scope="col"><?= __('Id') ?></th>!-->
+                <!--<th scope="col"><?= __('Employee Id') ?></th>!-->
                 <th scope="col"><?= __('Formation Id') ?></th>
                 <th scope="col"><?= __('Date Executee') ?></th>
                 <th scope="col"><?= __('Proof Id') ?></th>
@@ -115,8 +115,8 @@
             </tr>
             <?php foreach ($employee->formations_employee as $formationsEmployee): ?>
             <tr>
-                <td><?= h($formationsEmployee->id) ?></td>
-                <td><?= h($formationsEmployee->employee_id) ?></td>
+                <!-- <td><?= h($formationsEmployee->id) ?></td>!-->
+                <!--<td><?= h($formationsEmployee->employee_id) ?></td>!-->
                 <td><?= h($formationsEmployee->formation_id) ?></td>
                 <td><?= h($formationsEmployee->date_executee) ?></td>
                 <td><?= h($formationsEmployee->proof_id) ?></td>

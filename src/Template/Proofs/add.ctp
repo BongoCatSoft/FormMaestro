@@ -17,10 +17,9 @@
 <div class="proofs form large-9 medium-8 columns content">
     <?= $this->Form->create($proof) ?>
     <fieldset>
-        <legend><?= __('Add File') ?></legend>
+        <legend><?= __('Add Proof') ?></legend>
         <?php
-        echo $this->Form->control('original_file_name', ['type' => 'file','multiple'=>'true']);
-
+        echo $this->Form->control('original_file_name', ['type' => 'file']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

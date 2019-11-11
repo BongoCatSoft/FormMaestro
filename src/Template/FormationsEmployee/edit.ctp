@@ -30,7 +30,7 @@
             echo $this->Form->control('employee_id', ['options' => $employees]);
             echo $this->Form->control('formation_id', ['options' => $formations]);
             echo $this->Form->control('date_executee', ['empty' => true]);
-            echo $this->Form->control('proof_id', ['options' => $proofs, 'empty' => true]);
+            echo $this->Form->control('proof_id', ['options' => $proofs]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

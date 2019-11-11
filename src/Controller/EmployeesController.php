@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\Entity\Formation;
+use phpDocumentor\Reflection\Types\Integer;
 
 /**
  * Employees Controller
@@ -122,7 +123,7 @@ class EmployeesController extends AppController
 
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['add', 'edit', 'delete'] ) && $user['role'] === 0) {
+        if (in_array($action, ['add', 'edit', 'delete', 'plan'] ) && $user['role'] === 0) {
             return true;
         }
 
@@ -133,10 +134,91 @@ class EmployeesController extends AppController
     }
 
     public function plan($id){
-        $formation = $this->Employees->FormationsEmployee->find()->where(['employee_id' =>$id]);
-        $employee = $this->Employees->get($id, [
-            'contain' => []
-        ]);
-}
+        $formations_temp = $this->Employees->FormationsEmployee->find('all')->where(['employee_id' =>$id]);
+        $employee = $this->Employees->get($id, []);
+        $location = $this->Employees->Locations->find()->where(['id'=>$employee->location_id])->first();
+        $formations_array = [];
+        $today = date("Y/m/d");
+        foreach ($formations_temp as $formation_employee){
+            //obrenir donnees necessaires
+            //temp thingy
+            //$formation_employee = $formations_temp->first();
+            //end temp thingy
+            $formation = $this->Employees->FormationsEmployee->Formations->find()->where(['id' => $formation_employee->formation_id])->first();
+            $formation_position = $this->Employees->FormationsEmployee->Formations->FormationsPosition->find()->where(['formation_id' => $formation->id])->first();
+            $frequence = $this->Employees->FormationsEmployee->Formations->Frequences->find()->where(['id' => $formation->frequence_id])->first();
+            $date_prevu = "";
+            $nb_jours_expire = "";
+            $nb_jours_a_venir = "";
+            $a_faire = $formation_position->status_formation == 'NA' ? ($formation_position->status_formation == 'NA' ? "" : "À faire"):  "À faire";
+            $jamais_fait = $formation_employee->date_executee != null ? "" : "Jamais Fait" ;
+            //compute dates
+            switch ($frequence->id){
+                case 1:
+                    $a_faire = "";
+                    break;
+                case 2:
+                    $date_prevu = date_format(date_add(date_create($formation_employee->date_executee), date_interval_create_from_date_string("1 year")), "Y-m-d");
+//                    echo intval(date_diff(date_create($today), date_create($date_prevu))->format("%R%a"));
+                    if(intval(date_diff(date_create($today), date_create($date_prevu))->format("%R%a")) > 0){ //si aujourdhui est passe date prevu
+                        $nb_jours_expire = intval(date_diff(date_create($today), date_create($date_prevu))->format("%a"));
+                    } else { //aujourdhui est avant date prevue
+                        $nb_jours_a_venir = intval(date_diff(date_create($today), date_create($date_prevu))->format("%a"));
+                        $a_faire = intval($nb_jours_a_venir) > 30 ? "" : "À faire";
+                    }
+                    break;
+                case 3:
+                    // "2 year";
+                    $date_prevu = date_format(date_add(date_create($formation_employee->date_executee), date_interval_create_from_date_string("2 year")), "Y-m-d");
+//                    echo intval(date_diff(date_create($today), date_create($date_prevu))->format("%R%a"));
+                    if(intval(date_diff(date_create($today), date_create($date_prevu))->format("%R%a")) > 0){ //si aujourdhui est passe date prevu
+                        $nb_jours_expire = intval(date_diff(date_create($today), date_create($date_prevu))->format("%a"));
+                    } else { //aujourdhui est avant date prevue
+                        $nb_jours_a_venir = intval(date_diff(date_create($today), date_create($date_prevu))->format("%a"));
+                        $a_faire = intval($nb_jours_a_venir) > 30 ? "" : "À faire";
+                    }
+                    break;
+                case 4:
+                    // "3 year";
+                    $date_prevu = date_format(date_add(date_create($formation_employee->date_executee), date_interval_create_from_date_string("3 year")), "Y-m-d");
+//                    echo intval(date_diff(date_create($today), date_create($date_prevu))->format("%R%a"));
+                    if(intval(date_diff(date_create($today), date_create($date_prevu))->format("%R%a")) > 0){ //si aujourdhui est passe date prevu
+                        $nb_jours_expire = intval(date_diff(date_create($today), date_create($date_prevu))->format("%a"));
+                    } else { //aujourdhui est avant date prevue
+                        $nb_jours_a_venir = intval(date_diff(date_create($today), date_create($date_prevu))->format("%a"));
+                        $a_faire = intval($nb_jours_a_venir) > 30 ? "" : "À faire";
+                    }
+                    break;
+                case 5:
+                    // "5 year";
+                    $date_prevu = date_format(date_add(date_create($formation_employee->date_executee), date_interval_create_from_date_string("5 year")), "Y-m-d");
+//                    echo intval(date_diff(date_create($today), date_create($date_prevu))->format("%R%a"));
+                    if(intval(date_diff(date_create($today), date_create($date_prevu))->format("%R%a")) > 0){ //si aujourdhui est passe date prevu
+                        $nb_jours_expire = intval(date_diff(date_create($today), date_create($date_prevu))->format("%a"));
+                    } else { //aujourdhui est avant date prevue
+                        $nb_jours_a_venir = intval(date_diff(date_create($today), date_create($date_prevu))->format("%a"));
+                        $a_faire = intval($nb_jours_a_venir) > 30 ? "" : "À faire";
+                    }
+                    break;
+            }
 
+            //add tout dans larray dtemp
+            $temp = [
+                'titre' => $formation->titre,
+                'status' => $formation_position->status_formation, //: formation_position
+                'frequence' => $frequence->title,// : formation->frequence_id : frequences
+                'date_fait' => $formation_employee->date_executee ,//: formation_employee
+                'date_prevu' => $date_prevu, //: [calculer] frequence + date fait ??
+                'expire_depuis' =>$nb_jours_expire,//: nb jours date auj - date prevu
+                'a_venir_nb_jours' => $nb_jours_a_venir,//: nb jour date prev - date auj
+                'a_faire' => $a_faire,//: est due ? [boolean]
+                'jamais_fait' => $jamais_fait //: date fait est pas null ? [boolean]
+            ];
+//            echo "foramtion no: " . $formation_employee->id . "<br>";
+//            var_dump($temp);
+//            echo "<br><br>";
+             array_push($formations_array,$temp);
+        }
+        $this->set(compact('employee', 'formations_array', 'formation', 'formation_position', 'frequence', 'formation_employee', 'location'));
+    }
 }

@@ -25,6 +25,7 @@ class Location extends Entity
     protected $_accessible = [
         'address' => true,
         'province' => true,
-        'postal_code' => true
+        'postal_code' => true,
+        'employees' => true
     ];
 }

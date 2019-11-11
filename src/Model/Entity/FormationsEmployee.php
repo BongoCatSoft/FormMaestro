@@ -34,6 +34,8 @@ class FormationsEmployee extends Entity
         'proof_id' => true,
         'employee' => true,
         'formation' => true,
-        'proof' => true
+        'proof' => true,
+        'employees' => true,
+        'foramtions' => true
     ];
 }

@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\CiviliteesTable&\Cake\ORM\Association\BelongsTo $Civilitees
  * @property \App\Model\Table\LanguagesTable&\Cake\ORM\Association\BelongsTo $Languages
- * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
+
  * @property \App\Model\Table\PositionsTable&\Cake\ORM\Association\BelongsTo $Positions
  * @property \App\Model\Table\LocationsTable&\Cake\ORM\Association\BelongsTo $Locations
  * @property \App\Model\Table\FormationsEmployeeTable&\Cake\ORM\Association\HasMany $FormationsEmployee
@@ -70,6 +70,7 @@ class EmployeesTable extends Table
         $this->hasMany('FormationsEmployee', [
             'foreignKey' => 'employee_id'
         ]);
+
         $this->hasMany('Users', [
             'foreignKey' => 'employee_id'
         ]);

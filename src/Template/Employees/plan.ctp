@@ -3,11 +3,12 @@ echo $this->Html->css('/css/planFormation',['block'=>true]);
 echo "<h1>Plan de formation</h1>";
 //echo <img src
 echo "<h2>Employé</h2>";
-    echo "Numéro d'employé :" . $employee->employee_number;
-    echo "Prénom :" . $employee->name;
-    echo "Nom :" . $employee->last_name;
-    echo "Immeuble" . $location->address . ", " . $location->postal_code;
+    echo "Numéro d'employé :" . $employee->employee_number . '<br>';
+    echo "Prénom :" . $employee->name . '<br>';
+    echo "Nom :" . $employee->last_name . '<br>';
+    echo "Immeuble :" . $location['address'] . ", " . $location['postal_code'] . '<br>';
     echo "\n\n";
+
 
 echo "<h2>Formations</h2>";
 echo "<table style='width:100%'>";
@@ -25,22 +26,26 @@ echo
         <th>Jamais faite</th>
     </tr>
   ";
-foreach ($formations as $formation) :
+foreach ($formations_array as $formation) :
 echo
   "
     <tr>
-        <td>" . $formation->titre . "</td>
-        <td>" . $formation->date_last_sent . "</td>
-        <td>" . $formation->frequence . "</td>
-        <td>" . $formation->duree . "</td>
-        <td>" . $formation->modalite . "</td>
+        <td>" . $formation['titre'] . "</td>
+        <td>" . $formation['status'] . "</td>
+        <td>" . $formation['frequence'] . "</td>
+        <td>" . $formation['date_fait'] . "</td>
+        <td>" . $formation['date_prevu'] . "</td>
+        <td>" . $formation['expire_depuis'] . " jours" . "</td>
+        <td>" . $formation['a_venir_nb_jours'] . " jours" . "</td>
+        <td>" . $formation['a_faire'] . "</td>
+        <td>" . $formation['jamais_fait'] . "</td>
     </tr>
   ";
 endforeach;
 echo "</table>";
 echo "\n\n";
 echo "<h6>Créé et envoyé par Formaestro, un logiciel de BongoCatSoft</h6>";
-echo "<h6>Imprimé le " . date("Y/m/d", "H:i:s") . "</h6>";
+echo "<h6>Imprimé le " . date("Y/m/d") . "</h6>";
 
 
 

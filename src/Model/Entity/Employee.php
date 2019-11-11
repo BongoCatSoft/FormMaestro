@@ -62,8 +62,8 @@ class Employee extends Entity
         'civilitee' => true,
         'language' => true,
         'users' => true,
-        'position' => true,
-        'location' => true,
+        'positions' => true,
+        'locations' => true,
         'formations_employee' => true
     ];
 

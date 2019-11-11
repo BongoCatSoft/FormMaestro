@@ -51,7 +51,7 @@
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $employee->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $employee->id]) ?>
-                    <?= $this->Html->link(__('Plan de formation'), ['controller' => 'PlansFormation','action' => 'view', $employee->id]) ?>
+                    <?= $this->Html->link(__('Plan de formation'), [/*'controller' => 'PlansFormation',*/'action' => 'plan', $employee->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $employee->id], ['confirm' => __('Are you sure you want to delete # {0}?', $employee->id)]) ?>
                 </td>
             </tr>

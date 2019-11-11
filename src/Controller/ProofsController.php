@@ -49,15 +49,27 @@ class ProofsController extends AppController
     {
         $proof = $this->Proofs->newEntity();
         if ($this->request->is('post')) {
-            $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
-            if ($this->Proofs->save($proof)) {
-                $this->Flash->success(__('The proof has been saved.'));
+            if (!empty($this->request->getData('original_file_name'))) {
+                $fileName = $this->request->data['original_file_name']['name'];
+                if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/ ' . $fileName)) {
+                    $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
+                    $proof->original_file_name = $fileName;
 
-                return $this->redirect(['action' => 'index']);
+                    if ($this->Proofs->save($proof)) {
+                        $this->Flash->success(__('Proof has been uploaded and inserted successfully.'));
+                    } else {
+                        $this->Flash->error(__('Unable to upload proof, please try again!'));
+                    }
+                } else {
+                    $this->Flash->error(__('Unable to save proof, please try again.'));
+                }
+            } else {
+                $this->Flash->error(__('Please choose a proof to upload.'));
             }
-            $this->Flash->error(__('The proof could not be saved. Please, try again.'));
+
         }
         $this->set(compact('proof'));
+
     }
 
     /**

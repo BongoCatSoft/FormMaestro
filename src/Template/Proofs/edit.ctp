@@ -21,7 +21,7 @@
     </ul>
 </nav>
 <div class="proofs form large-9 medium-8 columns content">
-    <?= $this->Form->create($proof) ?>
+    <?= $this->Form->create($proof, ['type'=>'file']) ?>
     <fieldset>
         <legend><?= __('Edit Proof') ?></legend>
         <?php

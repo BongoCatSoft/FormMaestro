@@ -139,8 +139,4 @@ class EmployeesController extends AppController
         ]);
 }
 
-    public function find($email){
-
-
-    }
 }

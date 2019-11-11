@@ -21,7 +21,7 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <!--<th scope="col"><?= $this->Paginator->sort('id') ?></th>!-->
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('employee_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('formation_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('date_executee') ?></th>
@@ -32,7 +32,7 @@
         <tbody>
             <?php foreach ($formationsEmployee as $formationsEmployee): ?>
             <tr>
-                <!-- <td><?= $this->Number->format($formationsEmployee->id) ?></td>!-->
+                <td><?= $this->Number->format($formationsEmployee->id) ?></td>
                 <td><?= $formationsEmployee->has('employee') ? $this->Html->link($formationsEmployee->employee->FullName, ['controller' => 'Employees', 'action' => 'view', $formationsEmployee->employee->id]) : '' ?></td>
                 <td><?= $formationsEmployee->has('formation') ? $this->Html->link($formationsEmployee->formation->name, ['controller' => 'Formations', 'action' => 'view', $formationsEmployee->formation->id]) : '' ?></td>
                 <td><?= h($formationsEmployee->date_executee) ?></td>

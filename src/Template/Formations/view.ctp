@@ -9,8 +9,10 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Formation'), ['action' => 'edit', $formation->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Formation'), ['action' => 'delete', $formation->id], ['confirm' => __('Are you sure you want to delete # {0}?', $formation->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Formations'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Formation'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Employees'), ['controller' => 'Employees', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Liste des preuves'), ['controller' => 'proofs', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Liste des formations faites'), ['controller' => 'formations_employee', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="formations view large-9 medium-8 columns content">

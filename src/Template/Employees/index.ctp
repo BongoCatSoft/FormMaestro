@@ -8,8 +8,9 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Employee'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Formations'),['controller' => 'Formations', 'action' => 'index']) ?> </li>
-
+        <li><?= $this->Html->link(__('List Formations'), ['controller' => 'Formations', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Liste des preuves'), ['controller' => 'proofs', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Liste des formations faites'), ['controller' => 'formations_employee', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="employees index large-9 medium-8 columns content">
@@ -22,8 +23,8 @@
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('last_name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('language_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cellphone') ?></th>
-                <!--<th scope="col"><?//= $this->Paginator->sort('user_id') ?></th>-->
+                <!--<th scope="col"><?//= $this->Paginator->sort('cellphone') ?></th>
+                <th scope="col"><?//= $this->Paginator->sort('user_id') ?></th>-->
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('position_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('location_id') ?></th>
@@ -40,8 +41,8 @@
                 <td><?= h($employee->name) ?></td>
                 <td><?= h($employee->last_name) ?></td>
                 <td><?= $employee->has('language') ? $this->Html->link($employee->language->langue, ['controller' => 'Languages', 'action' => 'view', $employee->language->id]) : '' ?></td>
-                <td><?= h($employee->cellphone) ?></td>
-               <!-- <td><?//= $this->Number->format($employee->user_id) ?></td>-->
+                <!-- <td><?//= h($employee->cellphone) ?></td>
+                <td><?//= $this->Number->format($employee->user_id) ?></td>-->
                 <td><?= h($employee->email) ?></td>
                 <td><?= $employee->has('position') ? $this->Html->link($employee->position->name, ['controller' => 'Positions', 'action' => 'view', $employee->position->id]) : '' ?></td>
                 <td><?= $employee->has('location') ? $this->Html->link($employee->location->address, ['controller' => 'Locations', 'action' => 'view', $employee->location->id]) : '' ?></td>

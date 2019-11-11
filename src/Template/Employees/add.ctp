@@ -26,7 +26,7 @@
             echo $this->Form->control('email');
             echo $this->Form->control('position_id', ['options' => $positions]);
             echo $this->Form->control('location_id', ['options' => $locations]);
-            echo $this->Form->control('formation_plan_last_sent', ['empty' => true]);
+            //echo $this->Form->control('formation_plan_last_sent', ['empty' => true]);
             echo $this->Form->control('active');
         ?>
     </fieldset>

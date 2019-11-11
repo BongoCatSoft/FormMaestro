@@ -19,18 +19,14 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('original_file_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('upload_date') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($proofs as $proof): ?>
             <tr>
-                <td><?= $this->Number->format($proof->id) ?></td>
                 <td><?= h($proof->original_file_name) ?></td>
-                <td><?= h($proof->upload_date) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $proof->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $proof->id]) ?>

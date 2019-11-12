@@ -44,7 +44,7 @@ class HomeController extends AppController{
 //        $employee = $donneesPlan['employee'];
 //        $formations_array = $donneesPlan['formations_array'];
 //        $location = $donneesPlan['location'];
-        $email = new Email('default');
+        $email = new Email('bongoMail');
         $email->viewBuilder()->setTemplate('planFormation');
         $email->viewBuilder()->setLayout('planFormation');
         $email->emailFormat('html');

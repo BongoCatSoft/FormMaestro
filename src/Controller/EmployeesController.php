@@ -134,6 +134,14 @@ class EmployeesController extends AppController
     }
 
     public function plan($id){
+        $donneesPlan = $this->getDonneesPlan($id);
+        $employee = $donneesPlan['employee'];
+        $formations_array = $donneesPlan['formations_array'];
+        $location = $donneesPlan['location'];
+        $this->set(compact('employee', 'formations_array', 'location'));
+    }
+
+    public function getDonneesPlan($id){
         $formations_temp = $this->Employees->FormationsEmployee->find('all')->where(['employee_id' =>$id]);
         $employee = $this->Employees->get($id, []);
         $location = $this->Employees->Locations->find()->where(['id'=>$employee->location_id])->first();
@@ -141,9 +149,6 @@ class EmployeesController extends AppController
         $today = date("Y/m/d");
         foreach ($formations_temp as $formation_employee){
             //obrenir donnees necessaires
-            //temp thingy
-            //$formation_employee = $formations_temp->first();
-            //end temp thingy
             $formation = $this->Employees->FormationsEmployee->Formations->find()->where(['id' => $formation_employee->formation_id])->first();
             $formation_position = $this->Employees->FormationsEmployee->Formations->FormationsPosition->find()->where(['formation_id' => $formation->id])->first();
             $frequence = $this->Employees->FormationsEmployee->Formations->Frequences->find()->where(['id' => $formation->frequence_id])->first();
@@ -152,6 +157,7 @@ class EmployeesController extends AppController
             $nb_jours_a_venir = "";
             $a_faire = $formation_position->status_formation == 'NA' ? ($formation_position->status_formation == 'NA' ? "" : "À faire"):  "À faire";
             $jamais_fait = $formation_employee->date_executee != null ? "" : "Jamais Fait" ;
+
             //compute dates
             switch ($frequence->id){
                 case 1:
@@ -202,7 +208,7 @@ class EmployeesController extends AppController
                     break;
             }
 
-            //add tout dans larray dtemp
+            //add tout dans larray temp
             $temp = [
                 'titre' => $formation->titre,
                 'status' => $formation_position->status_formation, //: formation_position
@@ -214,11 +220,9 @@ class EmployeesController extends AppController
                 'a_faire' => $a_faire,//: est due ? [boolean]
                 'jamais_fait' => $jamais_fait //: date fait est pas null ? [boolean]
             ];
-//            echo "foramtion no: " . $formation_employee->id . "<br>";
-//            var_dump($temp);
-//            echo "<br><br>";
-             array_push($formations_array,$temp);
+            array_push($formations_array,$temp);
         }
-        $this->set(compact('employee', 'formations_array', 'formation', 'formation_position', 'frequence', 'formation_employee', 'location'));
+        $donnees = ['employee' => $employee, 'formations_array' => $formations_array, 'location' => $location];
+        return $donnees;
     }
 }

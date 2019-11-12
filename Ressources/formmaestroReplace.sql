@@ -1,4 +1,4 @@
-create table if not exists civilitees
+create or replace table civilitees
 (
     id       int auto_increment
         primary key,
@@ -6,7 +6,7 @@ create table if not exists civilitees
 )
     charset = utf8;
 
-create table if not exists frequences
+create or replace table frequences
 (
     id    int auto_increment
         primary key,
@@ -14,7 +14,7 @@ create table if not exists frequences
 )
     charset = utf8;
 
-create table if not exists languages
+create or replace table languages
 (
     id     int auto_increment
         primary key,
@@ -22,7 +22,7 @@ create table if not exists languages
 )
     charset = utf8;
 
-create table if not exists locations
+create or replace table locations
 (
     id          int auto_increment
         primary key,
@@ -32,7 +32,7 @@ create table if not exists locations
 )
     charset = utf8;
 
-create table if not exists modalities
+create or replace table modalities
 (
     id    int auto_increment
         primary key,
@@ -40,7 +40,7 @@ create table if not exists modalities
 )
     charset = utf8;
 
-create table if not exists positions
+create or replace table positions
 (
     id       int auto_increment
         primary key,
@@ -50,7 +50,7 @@ create table if not exists positions
 )
     charset = utf8;
 
-create table if not exists employees
+create or replace table employees
 (
     id                       int auto_increment
         primary key,
@@ -84,16 +84,16 @@ create table if not exists employees
 )
     charset = utf8;
 
-create table if not exists proofs
+create or replace table proofs
 (
     id                 int auto_increment
         primary key,
     original_file_name varchar(255) not null,
-    created        `upload_date` datetime DEFAULT CURRENT_TIMESTAMP
+    upload_date        datetime     null
 )
     charset = utf8;
 
-create table if not exists reminders
+create or replace table reminders
 (
     id    int auto_increment
         primary key,
@@ -101,7 +101,7 @@ create table if not exists reminders
 )
     charset = utf8;
 
-create table if not exists formations
+create or replace table formations
 (
     id           int auto_increment
         primary key,
@@ -124,16 +124,16 @@ create table if not exists formations
 )
     charset = utf8;
 
-create index frequence_id
+create or replace index frequence_id
     on formations (frequence_id);
 
-create index modality_id
+create or replace index modality_id
     on formations (modality_id);
 
-create index reminder_id
+create or replace index reminder_id
     on formations (reminder_id);
 
-create table if not exists formations_employee
+create or replace table formations_employee
 (
     id            int auto_increment
         primary key,
@@ -153,7 +153,7 @@ create table if not exists formations_employee
 )
     charset = utf8;
 
-create table if not exists formations_position
+create or replace table formations_position
 (
     id               int auto_increment
         primary key,
@@ -169,10 +169,10 @@ create table if not exists formations_position
 )
     charset = utf8;
 
-create index proof_id_position
+create or replace index proof_id_position
     on formations_position (position_id);
 
-create table if not exists users
+create or replace table users
 (
     id          int auto_increment
         primary key,
@@ -194,3 +194,4 @@ alter table employees
     add constraint user_id
         foreign key (user_id) references users (id)
             on update cascade on delete cascade;
+

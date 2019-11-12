@@ -2,10 +2,10 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Controller\EmployeesController;
 use App\Model\Entity\Employee;
 use Cake\Core\App;
 use Cake\Mailer\Email;
-use App\Controller\EmployeesController;
 use Cake\ORM\TableRegistry;
 
 
@@ -24,7 +24,7 @@ class HomeController extends AppController{
             $employee = $this->trouverEmployee($email);
 
             $this->Flash->success('Si un utilisateur est lié à ce courriel, le plan de formation lui seras envoyé.');
-            $this->sendEmail($employee->get('email'));
+            $this->sendEmail($employee->get('email'), $employee);
         }
 
     }
@@ -36,9 +36,23 @@ class HomeController extends AppController{
         return $Employees->find('all')->where(['email ' => $email])->first();
     }
 
-    public function sendEmail($courriel)
+    public function sendEmail($courriel, $employee)
     {
+        $this->loadModel('Employees');
+
+        $donneesPlan = (new EmployeesController())->getDonneesPlan($employee->id);
+//        $employee = $donneesPlan['employee'];
+//        $formations_array = $donneesPlan['formations_array'];
+//        $location = $donneesPlan['location'];
         $email = new Email('default');
+        $email->viewBuilder()->setTemplate('planFormation');
+        $email->viewBuilder()->setLayout('planFormation');
+        $email->emailFormat('html');
+        $email->setViewVars([
+            'employee' => $donneesPlan['employee'],
+            'formations_array' => $donneesPlan['formations_array'],
+            'location' =>$donneesPlan['location']
+        ]);
         $email->to($courriel)->setSubject(__('Plan de formation'))->send(__('Ceci est un message de test'));
         $email->send();
     }

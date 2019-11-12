@@ -218,6 +218,20 @@ return [
             'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+        'gmail' => [
+            'host' => 'ssl://smtp.gmail.com',
+            'port' => 465,
+            'username' =>'bongocatsoft@gmail.com',
+            'password' => 'xsmoltgtkwwvhoec',
+            'className' => 'Smtp'
+        ],
+        'bongoMail' => [
+            'host' => 'ssl://mail.bongocatsoft.ca',
+            'port' => 465,
+            'username' =>'notifications@bongocatsoft.ca',
+            'password' => '4wlkRkeCkB=g',
+            'className' => 'Smtp'
+        ],
     ],
 
     /**
@@ -231,8 +245,14 @@ return [
      */
     'Email' => [
         'default' => [
-            'transport' => 'default',
-            'from' => 'you@localhost',
+            'transport' => 'gmail',
+            'from' => 'bongocatsoft@gmail.com',
+            //'charset' => 'utf-8',
+            //'headerCharset' => 'utf-8',
+        ],
+        'bongoMail' => [
+            'transport' => 'bongoMail',
+            'from' => 'notifications@bongocatsoft.ca',
             //'charset' => 'utf-8',
             //'headerCharset' => 'utf-8',
         ],

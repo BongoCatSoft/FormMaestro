@@ -225,4 +225,10 @@ class EmployeesController extends AppController
         $donnees = ['employee' => $employee, 'formations_array' => $formations_array, 'location' => $location];
         return $donnees;
     }
+
+    public function envoyerPlan($id){
+        $employee = $this->Employees->get($id);
+        (new HomeController())->sendEmail($employee->email, $employee);
+        return $this->redirect(['action' => 'index']);
+    }
 }

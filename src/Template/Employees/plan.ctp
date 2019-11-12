@@ -1,6 +1,6 @@
 <?php
 echo $this->Html->css('/css/planFormation',['block'=>true]);
-echo $this->Html->link(__('Retour'), ['action' => 'index']);
+echo $this->Html->link(__('Retour'), ['action' => 'index']) . "\t\t\t" . $this->Html->link(__("Envoyer le de formation à l'employé"), ['action' => 'envoyerPlan', $employee->id]);
 echo "<h1>Plan de formation</h1>";
 //echo <img src
 echo "<h2>Employé</h2>";

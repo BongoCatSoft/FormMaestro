@@ -215,8 +215,8 @@ class EmployeesController extends AppController
                 'frequence' => $frequence->title,// : formation->frequence_id : frequences
                 'date_fait' => $formation_employee->date_executee ,//: formation_employee
                 'date_prevu' => $date_prevu, //: [calculer] frequence + date fait ??
-                'expire_depuis' =>$nb_jours_expire,//: nb jours date auj - date prevu
-                'a_venir_nb_jours' => $nb_jours_a_venir,//: nb jour date prev - date auj
+                'expire_depuis' =>$nb_jours_expire . "jours",//: nb jours date auj - date prevu
+                'a_venir_nb_jours' => $nb_jours_a_venir. "jours",//: nb jour date prev - date auj
                 'a_faire' => $a_faire,//: est due ? [boolean]
                 'jamais_fait' => $jamais_fait //: date fait est pas null ? [boolean]
             ];

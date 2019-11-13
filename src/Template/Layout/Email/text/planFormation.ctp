@@ -35,8 +35,8 @@ foreach ($formations_array as $formation) :
         <td>" . $formation['frequence'] . "</td>
         <td>" . $formation['date_fait'] . "</td>
         <td>" . $formation['date_prevu'] . "</td>
-        <td>" . $formation['expire_depuis'] . " jours" . "</td>
-        <td>" . $formation['a_venir_nb_jours'] . " jours" . "</td>
+        <td>" . $formation['expire_depuis']  . "</td>
+        <td>" . $formation['a_venir_nb_jours'] .  "</td>
         <td>" . $formation['a_faire'] . "</td>
         <td>" . $formation['jamais_fait'] . "</td>
     </tr>

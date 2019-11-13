@@ -1,8 +1,9 @@
 <?php
 echo $this->Html->css('/css/planFormation',['block'=>true]);
-echo $this->Html->link(__('Retour'), ['action' => 'index']) . "\t\t\t" . $this->Html->link(__("Envoyer le de formation à l'employé"), ['action' => 'envoyerPlan', $employee->id]);
+echo $this->Html->link(__('Retour'), ['action' => 'index']);
+echo "<br>";
+echo $this->Html->image('/webroot/logo.jpg');
 echo "<h1>Plan de formation</h1>";
-//echo <img src
 echo "<h2>Employé</h2>";
     echo "Numéro d'employé :" . $employee->employee_number . '<br>';
     echo "Prénom :" . $employee->name . '<br>';
@@ -44,6 +45,7 @@ echo
   ";
 endforeach;
 echo "</table>";
+echo $this->Html->link(__("Envoyer le plan de formation à l'employé"), ['action' => 'envoyerPlan', $employee->id]);
 echo "\n\n";
 echo "<h6>Créé et envoyé par Formaestro, un logiciel de BongoCatSoft</h6>";
 echo "<h6>Imprimé le " . date("Y/m/d") . "</h6>";

@@ -123,7 +123,7 @@ class EmployeesController extends AppController
 
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['add', 'edit', 'delete', 'plan'] ) && $user['role'] === 0) {
+        if (in_array($action, ['add', 'edit', 'delete', 'plan', 'envoyerPlan'] ) && $user['role'] === 0) {
             return true;
         }
 

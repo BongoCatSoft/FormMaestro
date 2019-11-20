@@ -29,6 +29,17 @@
             <td><?= $this->Number->format($proof->id) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Preview') ?></th>
+            <td>
+                <?php echo $this->Html->image("Files/" . $proof->name, [
+                    "alt" => $proof->original_file_name,
+                    "width" => "220px",
+                    "height" => "150px",
+                    'url' => ['action' => 'view', $proof->id]
+                ]); ?>
+            </td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Upload Date') ?></th>
             <td><?= h($proof->upload_date) ?></td>
         </tr>

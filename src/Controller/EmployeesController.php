@@ -146,7 +146,7 @@ class EmployeesController extends AppController
         $employee = $this->Employees->get($id, []);
         $location = $this->Employees->Locations->find()->where(['id'=>$employee->location_id])->first();
         $formations_array = [];
-        $today = date("Y/m/d");
+        $today = date("d/m/Y");
         foreach ($formations_temp as $formation_employee){
             //obrenir donnees necessaires
             $formation = $this->Employees->FormationsEmployee->Formations->find()->where(['id' => $formation_employee->formation_id])->first();

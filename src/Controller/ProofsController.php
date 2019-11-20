@@ -48,28 +48,46 @@ class ProofsController extends AppController
     public function add()
     {
         $proof = $this->Proofs->newEntity();
-        if ($this->request->is('post')) {
-            if (!empty($this->request->getData('original_file_name'))) {
-                $fileName = $this->request->data['original_file_name']['name'];
-                if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/ ' . $fileName)) {
-                    $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
-                    $proof->original_file_name = $fileName;
+            if ($this->request->is('post')) {
+                if (!empty($this->request->getData('original_file_name'))) {
+                    $fileName = $this->request->data['original_file_name']['name'];
+                        if (strpos($fileName, 'pdf') !== false || strpos($fileName, 'PDF') !== false ||
+                            strpos($fileName, 'jpg') !== false || strpos($fileName, 'JPG') !== false ||
+                            strpos($fileName, 'jpeg') !== false || strpos($fileName, 'JPEG') !== false ||
+                            strpos($fileName, 'png') !== false || strpos($fileName, 'PNG') !== false ||
+                            strpos($fileName,'iso')){
 
-                    if ($this->Proofs->save($proof)) {
-                        $this->Flash->success(__('Proof has been uploaded and inserted successfully.'));
+                                if(filesize($this->request->data['original_file_name']['tmp_name']) <= 37500){
+
+                                    if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/ ' . $fileName)) {
+                                        $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
+                                        $proof->original_file_name = $fileName;
+
+                                    if ($this->Proofs->save($proof)) {
+
+                                        $this->Flash->success(__('Proof has been uploaded and inserted successfully.'));
+
+                                    } else {
+
+                                        $this->Flash->error(__('Unable to upload proof, please try again!'));
+                                    }
+                                }else{
+                                    $this->Flash->error(__('Please choose a proof to upload.'));
+                                }
+
                     } else {
-                        $this->Flash->error(__('Unable to upload proof, please try again!'));
+                        $this->Flash->error(__('Votre fichier est trop gros'));
+                        var_dump($this->request->getData());
                     }
                 } else {
-                    $this->Flash->error(__('Unable to save proof, please try again.'));
+                    $this->Flash->error(__('Mauvais type de fichier'));
                 }
-            } else {
-                $this->Flash->error(__('Please choose a proof to upload.'));
+
             }
+            //$this->set(compact('proof'));
 
         }
         $this->set(compact('proof'));
-
     }
 
     /**
@@ -130,4 +148,32 @@ class ProofsController extends AppController
         return $user['role'] === 1;
     }
 
+    public function allowed_file(){
+
+        $allowed = array('img/files/pdf','img/files/jpeg');  //application = folder ou on mets les fichier
+
+        if(in_array($_FILES['resume']['type'], $allowed) AND in_array($_FILES['reference']['type'], $allowed)){
+
+            if($_FILES["resume"]["size"] < 300000 AND $_FILES["reference"]["size"] < 100 ){
+
+                //file is good
+                return true;
+            }else{
+
+                $this->Flash->error(__('Le fichied est trop gros'));
+                return false;
+                //fichier trop gros
+            }
+
+
+        }else{
+
+            $this->Flash->error(__('Mauvais type de fichier'));
+            return false;
+            //bad file error
+            //mauvaise extension du fichier
+        }
+
+
+    }
 }

@@ -15,7 +15,7 @@
     </ul>
 </nav>
 <div class="proofs form large-9 medium-8 columns content">
-    <?= $this->Form->create($proof, ['type' => 'file']) ?>
+    <?= $this->Form->create($proof, ['type' => 'file', 'id'=>'file']) ?>
     <fieldset>
         <legend><?= __('Add Proof') ?></legend>
         <?php
@@ -24,4 +24,17 @@
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+
+    <script language="JavaScript">
+        document.forms[0].addEventListener('submit', function( evt ) {
+            var file = document.getElementById('file').files[0];
+
+            if(file && file.size < 10485760) { // 10 MB (this size is in bytes)
+                //Submit form
+            } else {
+                //Prevent default and display error
+                evt.preventDefault();
+            }
+        }, false);
+    </script>
 </div>

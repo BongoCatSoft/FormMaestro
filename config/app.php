@@ -329,7 +329,7 @@ return [
             //'port' => 'non_standard_port_number',
             'username' => 'root',
             'password' => 'root',
-            'database' => 'frommaestro',
+            'database' => 'bongocatsoft_formmaestro',
             //'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,

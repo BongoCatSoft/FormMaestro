@@ -51,10 +51,10 @@ class ProofsController extends AppController
             if ($this->request->is('post')) {
                 if (!empty($this->request->getData('original_file_name'))) {
                     $fileName = $this->request->data['original_file_name']['name'];
-                        if (strpos($fileName, 'pdf') !== false || strpos($fileName, 'PDF') !== false ||
-                            strpos($fileName, 'jpg') !== false || strpos($fileName, 'JPG') !== false ||
-                            strpos($fileName, 'jpeg') !== false || strpos($fileName, 'JPEG') !== false ||
-                            strpos($fileName, 'png') !== false || strpos($fileName, 'PNG') !== false ||
+                        if (strpos($fileName, 'pdf')  || strpos($fileName, 'PDF') ||
+                            strpos($fileName, 'jpg')  || strpos($fileName, 'JPG')  ||
+                            strpos($fileName, 'jpeg')  || strpos($fileName, 'JPEG')  ||
+                            strpos($fileName, 'png')  || strpos($fileName, 'PNG')  ||
                             strpos($fileName,'iso')){
 
                                 if(filesize($this->request->data['original_file_name']['tmp_name']) <= 37500){
@@ -148,32 +148,4 @@ class ProofsController extends AppController
         return $user['role'] === 1;
     }
 
-    public function allowed_file(){
-
-        $allowed = array('img/files/pdf','img/files/jpeg');  //application = folder ou on mets les fichier
-
-        if(in_array($_FILES['resume']['type'], $allowed) AND in_array($_FILES['reference']['type'], $allowed)){
-
-            if($_FILES["resume"]["size"] < 300000 AND $_FILES["reference"]["size"] < 100 ){
-
-                //file is good
-                return true;
-            }else{
-
-                $this->Flash->error(__('Le fichied est trop gros'));
-                return false;
-                //fichier trop gros
-            }
-
-
-        }else{
-
-            $this->Flash->error(__('Mauvais type de fichier'));
-            return false;
-            //bad file error
-            //mauvaise extension du fichier
-        }
-
-
-    }
 }

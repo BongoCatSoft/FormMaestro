@@ -15,26 +15,40 @@
     </ul>
 </nav>
 <div class="proofs form large-9 medium-8 columns content">
-    <?= $this->Form->create($proof, ['type' => 'file', 'id'=>'file']) ?>
+    <?= $this->Form->create($proof, ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Add Proof') ?></legend>
         <?php
-        echo $this->Form->control('original_file_name', ['type' => 'file']);
+        echo $this->Form->control('original_file_name', ['type' => 'file', 'id'=>'file','onchange'=>"Filevalidation()"]);
         ?>
+        <button id="Submit" >Submit</button>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <!--<?= $this->Form->button(__('Submit')) ?>!-->
     <?= $this->Form->end() ?>
 
-    <script language="JavaScript">
-        document.forms[0].addEventListener('submit', function( evt ) {
-            var file = document.getElementById('file').files[0];
+    <script>
+        Filevalidation = () => {
 
-            if(file && file.size < 10485760) { // 10 MB (this size is in bytes)
-                //Submit form
-            } else {
-                //Prevent default and display error
-                evt.preventDefault();
+            const fi = document.getElementById('file');
+            // Check if any file is selected.
+            if (fi.files.length > 0) {
+                for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                    const fsize = fi.files.item(i).size;
+                    const file = Math.round((fsize / 1024));
+                    // The size of the file.
+                    document.getElementById("Submit").hidden = false;
+                    if (file >= 300) {
+                        alert(
+                            "fichier trop gros");
+                        document.getElementById("Submit").hidden = true;
+
+                    } else  {
+
+
+                    }
+                }
             }
-        }, false);
+        }
     </script>
 </div>

@@ -155,6 +155,7 @@ class EmployeesController extends AppController
             $formation = $this->Employees->FormationsEmployee->Formations->find()->where(['id' => $formation_employee->formation_id])->first();
             $formation_position = $this->Employees->FormationsEmployee->Formations->FormationsPosition->find()->where(['formation_id' => $formation->id])->first();
             $frequence = $this->Employees->FormationsEmployee->Formations->Frequences->find()->where(['id' => $formation->frequence_id])->first();
+            $reminder = $this->Employees->FormationsEmployee->Formations->Reminders->find()->where(['id' => $formation->reminder_id])->first();
             $date_prevu = "";
             $nb_jours_expire = "";
             $nb_jours_a_venir = "";
@@ -170,12 +171,13 @@ class EmployeesController extends AppController
                 $nb_jours = (date_diff(($today), date_create($date_prevu))->format("%R%a"));
                 $symbole = substr($nb_jours, 0,1);
                 if($symbole == '+'){ //aujourdhui est avant date prevue
-                    $nb_jours_a_venir = (int)$nb_jours;
-                    $a_faire = $nb_jours_a_venir > 30 ? "" : "À faire";
+                    $nb_jours_a_venir = $this->calcul_reminder($reminder, $formation_employee, $date_prevu) ? (int)$nb_jours : "";
+                    $a_faire = $this->calcul_reminder($reminder, $formation_employee, $date_prevu) ? "À faire" : "";
                 }else{//si aujourdhui est passe date prevu
                     $nb_jours_expire = (int)(date_diff(($today), date_create($date_prevu))->format("%a"));
                 }
             }
+
 
 //            switch ($frequence->id){
 //                case 1:
@@ -273,6 +275,47 @@ class EmployeesController extends AppController
                 break;
         }
         return $date_prevu;
+    }
+
+    private function calcul_reminder($reminder, $formation_employee, $date_prevu){
+        $date_reminder = Time::now();
+        $do_reminder = false;
+        switch ($reminder->id){
+            case 1:
+                $date_reminder = date_format(date_sub(date_create($date_prevu), date_interval_create_from_date_string("1 day")), "d-m-Y");
+                $formation_employee->date_executee;
+                $do_reminder = $formation_employee->date_executee;
+                echo $date_prevu . '  ' . $date_reminder . "    ";
+                break;
+            case 2:
+                $date_reminder = date_format(date_sub(date_create($date_prevu), date_interval_create_from_date_string("1 week")), "d-m-Y");
+                echo $date_prevu . '  ' . $date_reminder . "    ";
+                break;
+            case 3:
+                $date_reminder = date_format(date_sub(date_create($date_prevu), date_interval_create_from_date_string("1 month")), "d-m-Y");
+                echo $date_prevu . '  ' . $date_reminder . "    ";
+                break;
+            case 4:
+                $date_reminder = date_format(date_sub(date_create($date_prevu), date_interval_create_from_date_string("3 months")), "d-m-Y");
+                echo $date_prevu . '  ' . $date_reminder . "    ";
+                break;
+            case 5:
+                $date_reminder = date_format(date_add(date_sub(date_create($date_prevu), date_interval_create_from_date_string("1 year")), "d-m-Y"));
+                echo $date_prevu . '  ' . $date_reminder . "    ";
+                break;
+        }
+
+        //$nb_jours = (date_diff(date_create($date_reminder), date_create($date_prevu))->format("%R%a"));
+        $nb_jours = (date_diff(date_create(Time::now()), date_create($date_reminder))->format("%R%a"));
+        $symbole = substr($nb_jours, 0,1);
+        echo "date diff: " . $nb_jours . "    ";
+        if($symbole == '+'){ //aujourdhui est avant date du reminder
+            $do_reminder = false;
+        }else{//si aujourdhui est passe date du reminder
+            $do_reminder = true;
+        }
+
+        return $do_reminder;
     }
 
     public function envoyerPlan($id){

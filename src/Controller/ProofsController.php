@@ -48,35 +48,34 @@ class ProofsController extends AppController
     public function add()
     {
         $proof = $this->Proofs->newEntity();
-            if ($this->request->is('post')) {
-                if (!empty($this->request->getData('original_file_name'))) {
-                    $fileName = $this->request->data['original_file_name']['name'];
-                        if (strpos($fileName, 'pdf') !== false || strpos($fileName, 'PDF') !== false ||
-                            strpos($fileName, 'jpg') !== false || strpos($fileName, 'JPG') !== false ||
-                            strpos($fileName, 'jpeg') !== false || strpos($fileName, 'JPEG') !== false ||
-                            strpos($fileName, 'png') !== false || strpos($fileName, 'PNG') !== false){
+        if ($this->request->is('post')) {
+            if (!empty($this->request->getData('original_file_name'))) {
+                $fileName = $this->request->data['original_file_name']['name'];
+                if (strpos($fileName, 'pdf') !== false || strpos($fileName, 'PDF') !== false ||
+                    strpos($fileName, 'jpg') !== false || strpos($fileName, 'JPG') !== false ||
+                    strpos($fileName, 'jpeg') !== false || strpos($fileName, 'JPEG') !== false ||
+                    strpos($fileName, 'png') !== false || strpos($fileName, 'PNG') !== false){
 
-                                if(filesize($this->request->data['original_file_name']['tmp_name']) <= 37500){
+                    if(filesize($this->request->data['original_file_name']['tmp_name']) <= 375000){
 
-                                    if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/' . $fileName)) {
-                                        $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
-                                        $proof->original_file_name = $fileName;
+                        if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/' . $fileName)) {
+                            $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
+                            $proof->original_file_name = $fileName;
 
-                                    if ($this->Proofs->save($proof)) {
+                            if ($this->Proofs->save($proof)) {
 
-                                        $this->Flash->success(__('Proof has been uploaded and inserted successfully.'));
+                                $this->Flash->success(__('Proof has been uploaded and inserted successfully.'));
 
-                                    } else {
+                            } else {
 
-                                        $this->Flash->error(__('Unable to upload proof, please try again!'));
-                                    }
-                                }else{
-                                    $this->Flash->error(__('Please choose a proof to upload.'));
-                                }
+                                $this->Flash->error(__('Unable to upload proof, please try again!'));
+                            }
+                        }else{
+                            $this->Flash->error(__('Please choose a proof to upload.'));
+                        }
 
                     } else {
                         $this->Flash->error(__('Votre fichier est trop gros'));
-                        var_dump($this->request->getData());
                     }
                 } else {
                     $this->Flash->error(__('Mauvais type de fichier'));
@@ -145,34 +144,6 @@ class ProofsController extends AppController
         $id = $this->request->getParam('pass.0');
 
         return $user['role'] === 1;
-    }
-
-    public function visualise ($id = null) {
-        $proof = $this->Proofs->get($id);
-        $nomExtension = $proof->original_file_name.trim('.');
-
-        if( $nomExtension[1] === "pdf"){
-
-        }else if ($nomExtension[1] === "png" || $nomExtension[1] === "jpg" || $nomExtension[1] === "jpeg" || $nomExtension[1] === "png"){
-            return "IMAGE";
-
-
-        }
-
-        return $this->redirect(['action' => 'view', $id]);
-
-
-    }
-
-    public function download($id = null){
-        $proof = $this->Proofs->get($id);
-        $filePath = WWW_ROOT . 'Files' . DS . $proof->original_file_name;
-
-        $this->response->withFile($filePath, array(
-            'download' => true,
-            'name' => $proof->original_file_name,
-        ));
-        return $this->response;
     }
 
 }

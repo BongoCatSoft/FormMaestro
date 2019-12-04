@@ -58,7 +58,7 @@ class ProofsController extends AppController
 
                                 if(filesize($this->request->data['original_file_name']['tmp_name']) <= 37500){
 
-                                    if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/ ' . $fileName)) {
+                                    if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/' . $fileName)) {
                                         $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
                                         $proof->original_file_name = $fileName;
 
@@ -168,7 +168,7 @@ class ProofsController extends AppController
         $proof = $this->Proofs->get($id);
         $filePath = WWW_ROOT . 'Files' . DS . $proof->original_file_name;
 
-        $this->response->file($filePath, array(
+        $this->response->withFile($filePath, array(
             'download' => true,
             'name' => $proof->original_file_name,
         ));

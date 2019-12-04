@@ -30,10 +30,7 @@ use App\Controller\ProofsController; ?>
             <td><?= $this->Number->format($proof->id) ?></td>
         </tr>
         <tr>
-
-            <td><a href="../../webroot/Files/<?= $proof->original_file_name ?>" download=""> Download File</a>
-<!--            <td><?/*= $this->Html->link(__('Download'), ['action' => 'download', $proof->id]) */?> </td>
--->
+            <td><?= $this->Html->link('Download', '/webroot/Files/' . $proof->original_file_name,['download'=>$proof->original_file_name]); ?></td>
 
 
         </tr>

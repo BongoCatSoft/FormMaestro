@@ -30,7 +30,7 @@
                 <td><?= h($proof->original_file_name) ?></td>
 
                 <td class="actions">
-                    <?= $this->Html->link(__('Download'), ['action' => 'download', $proof->id]) ?>
+                <?= $this->Html->link('Download', '/webroot/Files/' . $proof->original_file_name,['download'=>$proof->original_file_name]); ?>
 
                     <?= $this->Html->link(__('View'), ['action' => 'view', $proof->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $proof->id]) ?>

@@ -20,7 +20,6 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('original_file_name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Preview') ?></th>
 
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
@@ -29,11 +28,10 @@
             <?php foreach ($proofs as $proof): ?>
             <tr>
                 <td><?= h($proof->original_file_name) ?></td>
-                <?php var_dump("Files/". $proof->original_file_name) ?>
-                <td><?php echo $this->Html->image("Files/" . $proof->original_file_name, [
-                        "alt" => $proof->original_file_name,]); ?>
-                </td>
+
                 <td class="actions">
+                    <?= $this->Html->link(__('Download'), ['action' => 'download', $proof->id]) ?>
+
                     <?= $this->Html->link(__('View'), ['action' => 'view', $proof->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $proof->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $proof->id], ['confirm' => __('Are you sure you want to delete # {0}?', $proof->id)]) ?>

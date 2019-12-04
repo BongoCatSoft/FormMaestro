@@ -51,11 +51,10 @@ class ProofsController extends AppController
             if ($this->request->is('post')) {
                 if (!empty($this->request->getData('original_file_name'))) {
                     $fileName = $this->request->data['original_file_name']['name'];
-                        if (strpos($fileName, 'pdf')  || strpos($fileName, 'PDF') ||
-                            strpos($fileName, 'jpg')  || strpos($fileName, 'JPG')  ||
-                            strpos($fileName, 'jpeg')  || strpos($fileName, 'JPEG')  ||
-                            strpos($fileName, 'png')  || strpos($fileName, 'PNG')  ||
-                            strpos($fileName,'iso')){
+                        if (strpos($fileName, 'pdf') !== false || strpos($fileName, 'PDF') !== false ||
+                            strpos($fileName, 'jpg') !== false || strpos($fileName, 'JPG') !== false ||
+                            strpos($fileName, 'jpeg') !== false || strpos($fileName, 'JPEG') !== false ||
+                            strpos($fileName, 'png') !== false || strpos($fileName, 'PNG') !== false){
 
                                 if(filesize($this->request->data['original_file_name']['tmp_name']) <= 37500){
 
@@ -138,7 +137,7 @@ class ProofsController extends AppController
 
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['add', 'edit'] ) && $user['role'] === 0) {
+        if (in_array($action, ['add', 'edit', 'download'] ) && $user['role'] === 0) {
             return true;
         }
 
@@ -146,6 +145,34 @@ class ProofsController extends AppController
         $id = $this->request->getParam('pass.0');
 
         return $user['role'] === 1;
+    }
+
+    public function visualise ($id = null) {
+        $proof = $this->Proofs->get($id);
+        $nomExtension = $proof->original_file_name.trim('.');
+
+        if( $nomExtension[1] === "pdf"){
+
+        }else if ($nomExtension[1] === "png" || $nomExtension[1] === "jpg" || $nomExtension[1] === "jpeg" || $nomExtension[1] === "png"){
+            return "IMAGE";
+
+
+        }
+
+        return $this->redirect(['action' => 'view', $id]);
+
+
+    }
+
+    public function download($id = null){
+        $proof = $this->Proofs->get($id);
+        $filePath = WWW_ROOT . 'Files' . DS . $proof->original_file_name;
+
+        $this->response->file($filePath, array(
+            'download' => true,
+            'name' => $proof->original_file_name,
+        ));
+        return $this->response;
     }
 
 }

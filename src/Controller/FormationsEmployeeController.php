@@ -61,7 +61,8 @@ class FormationsEmployeeController extends AppController
             $this->Flash->error(__('The formations employee could not be saved. Please, try again.'));
         }
         $employees = $this->FormationsEmployee->Employees->find('list', ['limit' => 200]);
-        $formations = $this->FormationsEmployee->Formations->find('list', ['limit' => 200]);
+//        $formations = $this->FormationsEmployee->Formations->find('list', ['limit' => 200]);
+        $formations = $this->FormationsEmployee->Formations->find();
         $proofs = $this->FormationsEmployee->Proofs->find('list', ['limit' => 200]);
         $this->set(compact('formationsEmployee', 'employees', 'formations', 'proofs'));
     }
@@ -88,7 +89,8 @@ class FormationsEmployeeController extends AppController
             $this->Flash->error(__('The formations employee could not be saved. Please, try again.'));
         }
         $employees = $this->FormationsEmployee->Employees->find('list', ['limit' => 200]);
-        $formations = $this->FormationsEmployee->Formations->find('list', ['limit' => 200]);
+//        $formations = $this->FormationsEmployee->Formations->find('list', ['limit' => 200]);
+        $formations = $this->FormationsEmployee->Formations->find();
         $proofs = $this->FormationsEmployee->Proofs->find('list', ['limit' => 200]);
         $this->set(compact('formationsEmployee', 'employees', 'formations', 'proofs'));
     }

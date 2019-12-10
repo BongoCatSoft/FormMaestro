@@ -1,7 +1,8 @@
 <?php
 echo $this->Html->css('/css/planFormation',['block'=>true]);
+echo $this->Html->image('/webroot/logo.jpg');
+
 echo "<h1>Plan de formation</h1>";
-//echo <img src
 echo "<h2>Employé</h2>";
 echo "Numéro d'employé :" . $employee->employee_number . '<br>';
 echo "Prénom :" . $employee->name . '<br>';
@@ -35,8 +36,8 @@ foreach ($formations_array as $formation) :
         <td>" . $formation['frequence'] . "</td>
         <td>" . $formation['date_fait'] . "</td>
         <td>" . $formation['date_prevu'] . "</td>
-        <td>" . $formation['expire_depuis'] . " jours" . "</td>
-        <td>" . $formation['a_venir_nb_jours'] . " jours" . "</td>
+        <td>" . $formation['expire_depuis']  . "</td>
+        <td>" . $formation['a_venir_nb_jours'] .  "</td>
         <td>" . $formation['a_faire'] . "</td>
         <td>" . $formation['jamais_fait'] . "</td>
     </tr>

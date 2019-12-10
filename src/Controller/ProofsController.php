@@ -51,25 +51,41 @@ class ProofsController extends AppController
         if ($this->request->is('post')) {
             if (!empty($this->request->getData('original_file_name'))) {
                 $fileName = $this->request->data['original_file_name']['name'];
-                if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/ ' . $fileName)) {
-                    $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
-                    $proof->original_file_name = $fileName;
+                if (strpos($fileName, 'pdf') !== false || strpos($fileName, 'PDF') !== false ||
+                    strpos($fileName, 'jpg') !== false || strpos($fileName, 'JPG') !== false ||
+                    strpos($fileName, 'jpeg') !== false || strpos($fileName, 'JPEG') !== false ||
+                    strpos($fileName, 'png') !== false || strpos($fileName, 'PNG') !== false){
 
-                    if ($this->Proofs->save($proof)) {
-                        $this->Flash->success(__('Proof has been uploaded and inserted successfully.'));
+                    if(filesize($this->request->data['original_file_name']['tmp_name']) <= 375000){
+
+                        if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/' . $fileName)) {
+                            $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
+                            $proof->original_file_name = $fileName;
+
+                            if ($this->Proofs->save($proof)) {
+
+                                $this->Flash->success(__('Proof has been uploaded and inserted successfully.'));
+
+                            } else {
+
+                                $this->Flash->error(__('Unable to upload proof, please try again!'));
+                            }
+                        }else{
+                            $this->Flash->error(__('Please choose a proof to upload.'));
+                        }
+
                     } else {
-                        $this->Flash->error(__('Unable to upload proof, please try again!'));
+                        $this->Flash->error(__('Votre fichier est trop gros'));
                     }
                 } else {
-                    $this->Flash->error(__('Unable to save proof, please try again.'));
+                    $this->Flash->error(__('Mauvais type de fichier'));
                 }
-            } else {
-                $this->Flash->error(__('Please choose a proof to upload.'));
+
             }
+            //$this->set(compact('proof'));
 
         }
         $this->set(compact('proof'));
-
     }
 
     /**
@@ -120,7 +136,7 @@ class ProofsController extends AppController
 
         $action = $this->request->getParam('action');
         // The add and tags actions are always allowed to logged in users.
-        if (in_array($action, ['add', 'edit'] ) && $user['role'] === 0) {
+        if (in_array($action, ['add', 'edit', 'download'] ) && $user['role'] === 0) {
             return true;
         }
 

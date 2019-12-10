@@ -24,7 +24,9 @@ class HomeController extends AppController{
             $employee = $this->trouverEmployee($email);
 
             $this->Flash->success('Si un utilisateur est lié à ce courriel, le plan de formation lui seras envoyé.');
-            $this->sendEmail($employee->get('email'), $employee);
+
+            if($employee != null)
+                $this->sendEmail($employee->get('email'), $employee);
         }
 
     }
@@ -41,19 +43,17 @@ class HomeController extends AppController{
         $this->loadModel('Employees');
 
         $donneesPlan = (new EmployeesController())->getDonneesPlan($employee->id);
-//        $employee = $donneesPlan['employee'];
-//        $formations_array = $donneesPlan['formations_array'];
-//        $location = $donneesPlan['location'];
+
         $email = new Email('bongoMail');
         $email->viewBuilder()->setTemplate('planFormation');
         $email->viewBuilder()->setLayout('planFormation');
-        $email->emailFormat('html');
+        $email->setEmailFormat('html');
         $email->setViewVars([
             'employee' => $donneesPlan['employee'],
             'formations_array' => $donneesPlan['formations_array'],
             'location' =>$donneesPlan['location']
         ]);
-        $email->to($courriel)->setSubject(__('Plan de formation'))->send(__('Ceci est un message de test'));
+        $email->setTo($courriel)->setSubject(__('Plan de formation'));
         $email->send();
     }
 

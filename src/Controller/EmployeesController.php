@@ -231,4 +231,6 @@ class EmployeesController extends AppController
         (new HomeController())->sendEmail($employee->email, $employee);
         return $this->redirect(['action' => 'index']);
     }
+
 }
+

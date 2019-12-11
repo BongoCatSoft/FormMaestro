@@ -22,7 +22,7 @@ echo
         <th>Prévue le</th>
         <th>Expirée depuis</th>
         <th>À venir dans</th>
-        <th>À faire dans</th>
+        <th>À faire</th>
         <th>Jamais faite</th>
     </tr>
   ";

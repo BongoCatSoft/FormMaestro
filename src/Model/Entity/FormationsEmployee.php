@@ -36,6 +36,6 @@ class FormationsEmployee extends Entity
         'formation' => true,
         'proof' => true,
         'employees' => true,
-        'foramtions' => true
+        'formations' => true
     ];
 }

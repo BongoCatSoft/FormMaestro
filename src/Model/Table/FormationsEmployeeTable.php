@@ -35,7 +35,7 @@ class FormationsEmployeeTable extends Table
         parent::initialize($config);
 
         $this->setTable('formations_employee');
-        $this->setDisplayField('id');
+        $this->setDisplayField('formation_id');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Employees', [

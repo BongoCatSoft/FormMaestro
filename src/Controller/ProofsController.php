@@ -70,7 +70,6 @@ class ProofsController extends AppController
         }
         $this->set(compact('proof'));
 
-
     }
 
     /**

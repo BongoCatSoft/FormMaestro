@@ -3,7 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Proof $proof
  */
-?>
+
+use App\Controller\ProofsController; ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -27,6 +28,11 @@
         <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($proof->id) ?></td>
+        </tr>
+        <tr>
+            <td><?= $this->Html->link('Download', '/webroot/Files/' . $proof->original_file_name,['download'=>$proof->original_file_name]); ?></td>
+
+
         </tr>
         <tr>
             <th scope="row"><?= __('Upload Date') ?></th>

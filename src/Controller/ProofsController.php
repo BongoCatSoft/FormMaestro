@@ -56,7 +56,7 @@ class ProofsController extends AppController
                     strpos($fileName, 'jpeg') !== false || strpos($fileName, 'JPEG') !== false ||
                     strpos($fileName, 'png') !== false || strpos($fileName, 'PNG') !== false){
                     if(filesize($this->request->data['original_file_name']['tmp_name']) <= 375000){
-                        if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],  'webroot/Files/' . $fileName)) {
+                        if (move_uploaded_file($this->request->data['original_file_name']['tmp_name'],      'webroot/Files/' . $fileName)) {
                             $proof = $this->Proofs->patchEntity($proof, $this->request->getData());
                             $proof->original_file_name = $fileName;
                             if ($this->Proofs->save($proof)) {

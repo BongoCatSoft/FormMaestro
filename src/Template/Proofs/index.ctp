@@ -32,7 +32,6 @@
                 <td class="actions">
                 <?= $this->Html->link('Download', '/webroot/Files/' . $proof->original_file_name,['download'=>$proof->original_file_name]); ?>
 
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $proof->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $proof->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $proof->id], ['confirm' => __('Are you sure you want to delete # {0}?', $proof->id)]) ?>
                 </td>
